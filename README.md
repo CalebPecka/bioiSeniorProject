@@ -43,6 +43,13 @@ rm -rf FASTQ/3826/artifact_3826.html
 Qiime2's import tool also requires that we relabel all of the files to a specific convention, which can be followed with the steps below.
 
 ```
+cd FASTQ/3824
+mv Run2_Undetermined_S0_L001_I1_001.fastq.gz barcodes.fastq.gz
+mv Run2_Undetermined_S0_L001_R1_001.fastq.gz forward.fastq.gz
+mv Run2_Undetermined_S0_L001_R2_001.fastq.gz reverse.fastq.gz
+cd ../..
+qiime tools import --type EMPPairedEndSequences --input-path FASTQ/3824 --output-path 3824-paired-end-sequences.qza
+
 cd FASTQ/3825
 mv Run3_Undetermined_S0_L001_I1_001.fastq.gz barcodes.fastq.gz
 mv Run3_Undetermined_S0_L001_R1_001.fastq.gz forward.fastq.gz
