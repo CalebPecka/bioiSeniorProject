@@ -6,13 +6,18 @@ A Short description about your project
 # Step 1. Install a conda environment
 An Ubuntu Linux environment for Windows 64 was used for the creation of this project.
 
+```
 wget "https://repo.anaconda.com/archive/Anaconda3-2021.11-Linux-x86_64.sh"
 
 bash Anaconda3-2021.11-Linux-x86_64.sh
+```
 
 close and re-open terminal
 
-conda env list (to test)
+Test installation of conda
+```
+conda env list
+```
 
 If issues persist, see additional documentation: https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html
 
@@ -30,6 +35,7 @@ If issues persist, see additional documentation on qiime's website: https://docs
 # Data Access
 Raw sequencing data for this project is available using Qiita: https://qiita.ucsd.edu/ under the study number 10532. After downloading and unzipping the folder (I outputted the contents to a directory called "FASTQ"), you will find 4 separate FASTQ directories labeled 3823, 3824, 3825, and 3826. Within each folder is an artifact.html file that details which files are forward reads, reverse reads, and barcodes. We need to remove these artifact files for Qiime2's import tool.
 
+```
 rm -rf FASTQ/3823/artifact_3823.html
 
 rm -rf FASTQ/3824/artifact_3824.html
@@ -37,9 +43,11 @@ rm -rf FASTQ/3824/artifact_3824.html
 rm -rf FASTQ/3825/artifact_3825.html
 
 rm -rf FASTQ/3826/artifact_3826.html
+```
 
 Qiime2's import tool also requires that we relabel all of the files to a specific convention, which can be followed with the steps below.
 
+```
 cd FASTQ/3825
 
 mv Run3_Undetermined_S0_L001_I1_001.fastq.gz barcodes.fastq.gz
@@ -63,6 +71,7 @@ mv Run4_Undetermined_S0_L001_R2_001.fastq.gz reverse.fastq.gz
 cd ../..
 
 qiime tools import --type EMPPairedEndSequences --input-path FASTQ/3826 --ouput-path 3826-paired-end-sequences.qza
+```
 
 ## Usage:
 
