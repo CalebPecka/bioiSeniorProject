@@ -7,14 +7,20 @@ A Short description about your project
 An Ubuntu Linux environment for Windows 64 was used for the creation of this project.
 
 wget "https://repo.anaconda.com/archive/Anaconda3-2021.11-Linux-x86_64.sh"
+
 bash Anaconda3-2021.11-Linux-x86_64.sh
+
 close and re-open terminal
+
 conda env list (to test)
+
 If issues persist, see additional documentation: https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html
 
 # Step 2. Install qiime2 requirements
 wget https://data.qiime2.org/distro/core/qiime2-2021.11-py38-linux-conda.yml
+
 conda env create -n qiime2-2021.11 --file qiime2-2021.11-py38-linux-conda.yml
+
 # OPTIONAL CLEANUP
 rm qiime2-2021.11-py38-linux-conda.yml
 
