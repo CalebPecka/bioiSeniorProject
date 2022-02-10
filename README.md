@@ -37,9 +37,7 @@ Raw sequencing data for this project is available using Qiita: https://qiita.ucs
 
 ```
 rm -rf FASTQ/3823/artifact_3823.html
-
 rm -rf FASTQ/3824/artifact_3824.html
-
 rm -rf FASTQ/3825/artifact_3825.html
 
 rm -rf FASTQ/3826/artifact_3826.html
