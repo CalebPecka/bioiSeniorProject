@@ -42,8 +42,8 @@ rm -rf FASTQ/3826/artifact_3826.html
 
 Qiime2's import tool also requires that we relabel all of the files to a specific convention, which can be followed with the steps below. It is important to note that FASTQ reads for directories 3824, 3825, and 3826 use paired end sequence reads, while directory 3823 uses single end sequence reads. Qiime2 commands up until the demultiplexing step must be carried out separately.
 
-**Notes from Kang et al.**
-"Sequence quality control and demultiplexing using QIIME’s split_libraries_fastq.py with default parameters was performed as described in Bokulich et al. [46] on a per-run basis. The sequences were combined across runs by merging the resulting files using the cat Unix command, and sequences were clustered into operational taxonomic units (OTUs) at sequence similarities of 100 and 97%. "
+**Notes from Kang et al. 2017 [1]**
+"Sequence quality control and demultiplexing using QIIME’s split_libraries_fastq.py with default parameters was performed as described in Bokulich et al. [46] on a per-run basis. The sequences were combined across runs by merging the resulting files using the cat Unix command, and sequences were clustered into operational taxonomic units (OTUs) at sequence similarities of 100 and 97%."
 
 ```
 cd FASTQ/3823
@@ -79,5 +79,10 @@ Now, we demultiplex the files. Again, procedures for demultiplexing are differen
 qiime demux emp-single --i-seqs 3823-single-end-sequences.qza --m-barcodes-file mmaping_files/3823_mapping_file.txt --m-barcodes-column barcode --o-per-sample-sequences 3823_demux.qza --o-error-correction-details 3823_demux-details.qza
 ```
 ## Usage:
+
+## References
+[1] Kang, D. W., Adams, J. B., Gregory, A. C., Borody, T., Chittick, L., Fasano, A., Khoruts, A., Geis, E., 
+Maldonado, J., McDonough-Means, S., Pollard, E. L., Roux, S., Sadowsky, M. J., Lipson, K. S., Sullivan, M. B., Caporaso, J. G., & Krajmalnik-Brown, R. (2017). Microbiota Transfer Therapy alters gut ecosystem and improves gastrointestinal and autism symptoms: an open-label study. Microbiome, 5(1), 10. https://doi.org/10.1186/s40168-016-0225-7
+
 
 
