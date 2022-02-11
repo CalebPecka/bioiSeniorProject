@@ -77,6 +77,12 @@ qiime tools import --type EMPPairedEndSequences --input-path FASTQ/3826 --ouput-
 Now, we demultiplex the files. Again, procedures for demultiplexing are different depending on if we are working with single-end reads or paired-end reads.
 ```
 qiime demux emp-single --i-seqs 3823-single-end-sequences.qza --m-barcodes-file mmaping_files/3823_mapping_file.txt --m-barcodes-column barcode --o-per-sample-sequences 3823_demux.qza --o-error-correction-details 3823_demux-details.qza
+
+qiime demux emp-paired --m-barcodes-file mapping_files/3824_mapping_file.txt --m-barcodes-column barcode --p-rev-comp-mapping-barcodes --i-seqs 3824-paired-end-sequences.qza --o-per-sample-sequences 3824_demux.qza --o-error-correction-details 3824_demux-details.qza
+
+qiime demux emp-paired --m-barcodes-file mapping_files/3825_mapping_file.txt --m-barcodes-column barcode --p-rev-comp-mapping-barcodes --i-seqs 3825-paired-end-sequences.qza --o-per-sample-sequences 3825_demux.qza --o-error-correction-details 3825_demux-details.qza
+
+qiime demux emp-paired --m-barcodes-file mapping_files/3826_mapping_file.txt --m-barcodes-column barcode --p-rev-comp-mapping-barcodes --i-seqs 3826-paired-end-sequences.qza --o-per-sample-sequences 3826_demux.qza --o-error-correction-details 3826_demux-details.qza
 ```
 ## Usage:
 
