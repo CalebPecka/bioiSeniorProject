@@ -31,7 +31,7 @@ conda activate qiime2-2021.11
 If issues persist, see additional documentation on qiime's website: https://docs.qiime2.org/2021.11/install/native/#install-qiime-2-within-a-conda-environment
 
 # Data Access
-Raw sequencing data for this project is available using Qiita: https://qiita.ucsd.edu/ under the study number 10532. After downloading and unzipping the folder (I outputted the contents to a directory called "FASTQ"), you will find 4 separate FASTQ directories labeled 3823, 3824, 3825, and 3826. Within each folder is an artifact.html file that details which files are forward reads, reverse reads, and barcodes. We need to remove these artifact files for Qiime2's import tool.
+Raw sequencing data for this project is available using Qiita: https://qiita.ucsd.edu/ under the study number 10532. After downloading and unzipping the folder, you will find 4 separate FASTQ directories labeled 3823, 3824, 3825, and 3826. Within each folder is an artifact.html file that details which files are forward reads, reverse reads, and barcodes. We need to remove these artifact files for Qiime2's import tool.
 
 ```
 rm -rf FASTQ/3823/artifact_3823.html
@@ -74,6 +74,10 @@ cd ../..
 qiime tools import --type EMPPairedEndSequences --input-path FASTQ/3826 --ouput-path 3826-paired-end-sequences.qza
 ```
 
+Now, we demultiplex the files. Again, procedures for demultiplexing are different depending on if we are working with single-end reads or paired-end reads.
+```
+qiime demux emp-single --i-seqs 3823-single-end-sequences.qza --m-barcodes-file mmaping_files/3823_mapping_file.txt --m-barcodes-column barcode --o-per-sample-sequences 3823_demux.qza --o-error-correction-details 3823_demux-details.qza
+```
 ## Usage:
 
 
