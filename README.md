@@ -11,7 +11,7 @@ wget "https://repo.anaconda.com/archive/Anaconda3-2021.11-Linux-x86_64.sh"
 bash Anaconda3-2021.11-Linux-x86_64.sh
 ```
 
-close and re-open terminal
+Close and re-open terminal
 
 Test installation of conda
 ```
@@ -40,9 +40,18 @@ rm -rf FASTQ/3825/artifact_3825.html
 rm -rf FASTQ/3826/artifact_3826.html
 ```
 
-Qiime2's import tool also requires that we relabel all of the files to a specific convention, which can be followed with the steps below.
+Qiime2's import tool also requires that we relabel all of the files to a specific convention, which can be followed with the steps below. It is important to note that FASTQ reads for directories 3824, 3825, and 3826 use paired end sequence reads, while directory 3823 uses single end sequence reads. Qiime2 commands up until the demultiplexing step must be carried out separately.
+
+**Notes from Kang et al.**
+"Sequence quality control and demultiplexing using QIIME’s split_libraries_fastq.py with default parameters was performed as described in Bokulich et al. [46] on a per-run basis. The sequences were combined across runs by merging the resulting files using the cat Unix command, and sequences were clustered into operational taxonomic units (OTUs) at sequence similarities of 100 and 97%. "
 
 ```
+cd FASTQ/3823
+mv Undetermined_S0_L001_I1_001.fastq.gz barcodes.fastq.gz
+mv Undetermined_S0_L001_R1_001.fastq.gz sequences.fastq.gz
+cd ../..
+qiime tools import --type EMPSingleEndSequences --input-path FASTQ/3823 --output-path 3823-single-end-sequences.qza
+
 cd FASTQ/3824
 mv Run2_Undetermined_S0_L001_I1_001.fastq.gz barcodes.fastq.gz
 mv Run2_Undetermined_S0_L001_R1_001.fastq.gz forward.fastq.gz
@@ -67,5 +76,4 @@ qiime tools import --type EMPPairedEndSequences --input-path FASTQ/3826 --ouput-
 
 ## Usage:
 
-## Notes from Kang et al.
-"Sequence quality control and demultiplexing using QIIME’s split_libraries_fastq.py with default parameters was performed as described in Bokulich et al. [46] on a per-run basis. The sequences were combined across runs by merging the resulting files using the cat Unix command, and sequences were clustered into operational taxonomic units (OTUs) at sequence similarities of 100 and 97%. "
+
