@@ -109,6 +109,14 @@ mv 3826_demux-details.qza 3826-preprocessing/3826_demux-details.qza
 mv 3826_demux.qza 3826-preprocessing/3826_demux-details.qza
 ```
 
+Now we do some DADA2 denoising.
+```
+qiime dada2 denoise-single --i-demultiplexed-seqs 3823-preprocessing/3823_demux.qza --p-trim-left 0 --p-trunc-len 0 --o-representative-sequences 3823-preprocessing/3823-rep-seqs.qza --o-table 3823-preprocessing/3823-table.qza --o-denoising-stats 3823-preprocessing/3823-stats.qza
+qiime dada2 denoise-paired --i-demultiplexed-seqs 3824-preprocessing/3824_demux.qza --p-trunc-len-f 0 --p-trunc-len-r 0 --o-representative-sequences 3824-preprocessing/3824-rep-seqs.qza --o-table 3824-preprocessing/3824-table.qza --o-denoising-stats 3824-preprocessing/3824-stats.qza
+qiime dada2 denoise-paired --i-demultiplexed-seqs 3825-preprocessing/3825_demux.qza --p-trunc-len-f 0 --p-trunc-len-r 0 --o-representative-sequences 3825-preprocessing/3825-rep-seqs.qza --o-table 3825-preprocessing/3825-table.qza --o-denoising-stats 3825-preprocessing/3825-stats.qza
+qiime dada2 denoise-paired --i-demultiplexed-seqs 3826-preprocessing/3826_demux.qza --p-trunc-len-f 0 --p-trunc-len-r 0 --o-representative-sequences 3826-preprocessing/3826-rep-seqs.qza --o-table 3826-preprocessing/3826-table.qza --o-denoising-stats 3826-preprocessing/3826-stats.qza
+```
+
 ## Usage:
 
 ## References
