@@ -92,7 +92,7 @@ mkdir 3824-preprocessing
 mkdir 3825-preprocessing
 mkdir 3826-preprocessing
 
-mv 3823-paired-end-sequences.qza 3823-preprocessing/3823-paired-end-sequences.qza
+mv 3823-single-end-sequences.qza 3823-preprocessing/3823-single-end-sequences.qza
 mv 3823_demux-details.qza 3823-preprocessing/3823_demux-details.qza
 mv 3823_demux.qza 3823-preprocessing/3823_demux-details.qza
 
