@@ -84,6 +84,31 @@ qiime demux emp-paired --m-barcodes-file mapping_files/3825_mapping_file.txt --m
 
 qiime demux emp-paired --m-barcodes-file mapping_files/3826_mapping_file.txt --m-barcodes-column barcode --p-rev-comp-mapping-barcodes --i-seqs 3826-paired-end-sequences.qza --o-per-sample-sequences 3826_demux.qza --o-error-correction-details 3826_demux-details.qza
 ```
+
+Now we're going to reorganize all the files.
+```
+mkdir 3823-preprocessing
+mkdir 3824-preprocessing
+mkdir 3825-preprocessing
+mkdir 3826-preprocessing
+
+mv 3823-paired-end-sequences.qza 3823-preprocessing/3823-paired-end-sequences.qza
+mv 3823_demux-details.qza 3823-preprocessing/3823_demux-details.qza
+mv 3823_demux.qza 3823-preprocessing/3823_demux-details.qza
+
+mv 3824-paired-end-sequences.qza 3824-preprocessing/3824-paired-end-sequences.qza
+mv 3824_demux-details.qza 3824-preprocessing/3824_demux-details.qza
+mv 3824_demux.qza 3824-preprocessing/3824_demux-details.qza
+
+mv 3825-paired-end-sequences.qza 3825-preprocessing/3825-paired-end-sequences.qza
+mv 3825_demux-details.qza 3825-preprocessing/3825_demux-details.qza
+mv 3825_demux.qza 3825-preprocessing/3825_demux-details.qza
+
+mv 3826-paired-end-sequences.qza 3826-preprocessing/3826-paired-end-sequences.qza
+mv 3826_demux-details.qza 3826-preprocessing/3826_demux-details.qza
+mv 3826_demux.qza 3826-preprocessing/3826_demux-details.qza
+```
+
 ## Usage:
 
 ## References
