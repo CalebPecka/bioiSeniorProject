@@ -50,39 +50,74 @@ cd FASTQ/3823
 mv Undetermined_S0_L001_I1_001.fastq.gz barcodes.fastq.gz
 mv Undetermined_S0_L001_R1_001.fastq.gz sequences.fastq.gz
 cd ../..
-qiime tools import --type EMPSingleEndSequences --input-path FASTQ/3823 --output-path 3823-single-end-sequences.qza
+qiime tools import \
+  --type EMPSingleEndSequences \
+  --input-path FASTQ/3823 \
+  --output-path 3823-single-end-sequences.qza
 
 cd FASTQ/3824
 mv Run2_Undetermined_S0_L001_I1_001.fastq.gz barcodes.fastq.gz
 mv Run2_Undetermined_S0_L001_R1_001.fastq.gz forward.fastq.gz
 mv Run2_Undetermined_S0_L001_R2_001.fastq.gz reverse.fastq.gz
 cd ../..
-qiime tools import --type EMPPairedEndSequences --input-path FASTQ/3824 --output-path 3824-paired-end-sequences.qza
+qiime tools import \
+  --type EMPPairedEndSequences \
+  --input-path FASTQ/3824 \
+  --output-path 3824-paired-end-sequences.qza
 
 cd FASTQ/3825
 mv Run3_Undetermined_S0_L001_I1_001.fastq.gz barcodes.fastq.gz
 mv Run3_Undetermined_S0_L001_R1_001.fastq.gz forward.fastq.gz
 mv Run3_Undetermined_S0_L001_R2_001.fastq.gz reverse.fastq.gz
 cd ../..
-qiime tools import --type EMPPairedEndSequences --input-path FASTQ/3825 --output-path 3825-paired-end-sequences.qza
+qiime tools import \
+  --type EMPPairedEndSequences \
+  --input-path FASTQ/3825 \
+  --output-path 3825-paired-end-sequences.qza
 
 cd FASTQ/3826
 mv Run4_Undetermined_S0_L001_I1_001.fastq.gz barcodes.fastq.gz
 mv Run4_Undetermined_S0_L001_R1_001.fastq.gz forward.fastq.gz
 mv Run4_Undetermined_S0_L001_R2_001.fastq.gz reverse.fastq.gz
 cd ../..
-qiime tools import --type EMPPairedEndSequences --input-path FASTQ/3826 --ouput-path 3826-paired-end-sequences.qza
+qiime tools import \
+  --type EMPPairedEndSequences \
+  --input-path FASTQ/3826 \
+  --ouput-path 3826-paired-end-sequences.qza
 ```
 
 Now, we demultiplex the files. Again, procedures for demultiplexing are different depending on if we are working with single-end reads or paired-end reads.
 ```
-qiime demux emp-single --i-seqs 3823-single-end-sequences.qza --m-barcodes-file mmaping_files/3823_mapping_file.txt --m-barcodes-column barcode --o-per-sample-sequences 3823_demux.qza --o-error-correction-details 3823_demux-details.qza
+qiime demux emp-single \
+  --i-seqs 3823-single-end-sequences.qza \
+  --m-barcodes-file mapping_files/3823_mapping_file.txt \
+  --m-barcodes-column barcode \
+  --o-per-sample-sequences 3823_demux.qza \
+  --o-error-correction-details 3823_demux-details.qza
 
-qiime demux emp-paired --m-barcodes-file mapping_files/3824_mapping_file.txt --m-barcodes-column barcode --p-rev-comp-mapping-barcodes --i-seqs 3824-paired-end-sequences.qza --o-per-sample-sequences 3824_demux.qza --o-error-correction-details 3824_demux-details.qza
+qiime demux emp-paired \
+  --m-barcodes-file mapping_files/3824_mapping_file.txt \
+  --m-barcodes-column barcode \
+  --p-rev-comp-mapping-barcodes \
+  --i-seqs 3824-paired-end-sequences.qza \
+  --o-per-sample-sequences 3824_demux.qza \
+  --o-error-correction-details 3824_demux-details.qza
 
-qiime demux emp-paired --m-barcodes-file mapping_files/3825_mapping_file.txt --m-barcodes-column barcode --p-rev-comp-mapping-barcodes --i-seqs 3825-paired-end-sequences.qza --o-per-sample-sequences 3825_demux.qza --o-error-correction-details 3825_demux-details.qza
+qiime demux emp-paired \
+  --m-barcodes-file mapping_files/3825_mapping_file.txt \
+  --m-barcodes-column barcode \
+  --p-rev-comp-mapping-barcodes \
+  --i-seqs 3825-paired-end-sequences.qza \
+  --o-per-sample-sequences 3825_demux.qza \
+  --o-error-correction-details 3825_demux-details.qza
 
-qiime demux emp-paired --m-barcodes-file mapping_files/3826_mapping_file.txt --m-barcodes-column barcode --p-rev-comp-mapping-barcodes --i-seqs 3826-paired-end-sequences.qza --o-per-sample-sequences 3826_demux.qza --o-error-correction-details 3826_demux-details.qza
+qiime demux emp-paired \
+  --m-barcodes-file mapping_files/3826_mapping_file.txt \
+  --m-barcodes-column barcode \
+  --p-rev-comp-mapping-barcodes \
+  --i-seqs 3826-paired-end-sequences.qza \
+  --o-per-sample-sequences 3826_demux.qza \
+  --o-error-correction-details 3826_demux-details.qza
 ```
 
 Now we're going to reorganize all the files.
@@ -111,31 +146,99 @@ mv 3826_demux.qza 3826-preprocessing/3826_demux-details.qza
 
 Now we do some DADA2 denoising.
 ```
-qiime dada2 denoise-single --i-demultiplexed-seqs 3823-preprocessing/3823_demux.qza --p-trim-left 0 --p-trunc-len 0 --o-representative-sequences 3823-preprocessing/3823-rep-seqs.qza --o-table 3823-preprocessing/3823-table.qza --o-denoising-stats 3823-preprocessing/3823-stats.qza
-qiime dada2 denoise-paired --i-demultiplexed-seqs 3824-preprocessing/3824_demux.qza --p-trunc-len-f 0 --p-trunc-len-r 0 --o-representative-sequences 3824-preprocessing/3824-rep-seqs.qza --o-table 3824-preprocessing/3824-table.qza --o-denoising-stats 3824-preprocessing/3824-stats.qza
-qiime dada2 denoise-paired --i-demultiplexed-seqs 3825-preprocessing/3825_demux.qza --p-trunc-len-f 0 --p-trunc-len-r 0 --o-representative-sequences 3825-preprocessing/3825-rep-seqs.qza --o-table 3825-preprocessing/3825-table.qza --o-denoising-stats 3825-preprocessing/3825-stats.qza
-qiime dada2 denoise-paired --i-demultiplexed-seqs 3826-preprocessing/3826_demux.qza --p-trunc-len-f 0 --p-trunc-len-r 0 --o-representative-sequences 3826-preprocessing/3826-rep-seqs.qza --o-table 3826-preprocessing/3826-table.qza --o-denoising-stats 3826-preprocessing/3826-stats.qza
+qiime dada2 denoise-single \
+  --i-demultiplexed-seqs 3823-preprocessing/3823_demux.qza \
+  --p-trim-left 0 \
+  --p-trunc-len 0 \
+  --o-representative-sequences 3823-preprocessing/3823-rep-seqs.qza \
+  --o-table 3823-preprocessing/3823-table.qza \
+  --o-denoising-stats 3823-preprocessing/3823-stats.qza
+qiime dada2 denoise-paired \
+  --i-demultiplexed-seqs 3824-preprocessing/3824_demux.qza \
+  --p-trunc-len-f 0 \
+  --p-trunc-len-r 0 \
+  --o-representative-sequences 3824-preprocessing/3824-rep-seqs.qza \
+  --o-table 3824-preprocessing/3824-table.qza \
+  --o-denoising-stats 3824-preprocessing/3824-stats.qza
+qiime dada2 denoise-paired \
+  --i-demultiplexed-seqs 3825-preprocessing/3825_demux.qza \
+  --p-trunc-len-f 0 \
+  --p-trunc-len-r 0 \
+  --o-representative-sequences 3825-preprocessing/3825-rep-seqs.qza \
+  --o-table 3825-preprocessing/3825-table.qza \
+  --o-denoising-stats 3825-preprocessing/3825-stats.qza
+qiime dada2 denoise-paired \
+  --i-demultiplexed-seqs 3826-preprocessing/3826_demux.qza \
+  --p-trunc-len-f 0 \
+  --p-trunc-len-r 0 \
+  --o-representative-sequences 3826-preprocessing/3826-rep-seqs.qza \
+  --o-table 3826-preprocessing/3826-table.qza \
+  --o-denoising-stats 3826-preprocessing/3826-stats.qza
 ```
 
 Now that we've completed denoising, we need to merge the tables and the rep-seqs together into a single file. Qiime has built-in commands for the table.qza files and the rep-seq.files. Mapping files need to be handled separately using UNIX commands.
 ```
-qiime feature-table merge --i-tables 3823-preprocessing/3823-table.qza --i-tables 3824-preprocessing/3824-table.qza --i-tables 3825-preprocessing/3825-table.qza --i-tables 3826-preprocessing/3826-table.qza --o-merged-table merged_table.qza
-qiime feature-table merge-seqs --i-data 3823-preprocessing/3823-rep-seqs.qza --i-data 3824-preprocessing/3824-rep-seqs.qza --i-data 3825-preprocessing/3825-rep-seqs.qza --i-data 3826-preprocessing/3826-rep-seqs --o-merged-data merged_rep-seqs.qza
+qiime feature-table merge \
+  --i-tables 3823-preprocessing/3823-table.qza \
+  --i-tables 3824-preprocessing/3824-table.qza \
+  --i-tables 3825-preprocessing/3825-table.qza \
+  --i-tables 3826-preprocessing/3826-table.qza \
+  --o-merged-table merged_table.qza
+  
+qiime feature-table merge-seqs \
+  --i-data 3823-preprocessing/3823-rep-seqs.qza \
+  --i-data 3824-preprocessing/3824-rep-seqs.qza \
+  --i-data 3825-preprocessing/3825-rep-seqs.qza \
+  --i-data 3826-preprocessing/3826-rep-seqs \
+  --o-merged-data merged_rep-seqs.qza
 
 tail -n +2 mapping_files/3824_mapping_file.txt > mapping_file/cat_3824_mapping_file.txt
 tail -n +2 mapping_files/3825_mapping_file.txt > mapping_file/cat_3825_mapping_file.txt
 tail -n +2 mapping_files/3826_mapping_file.txt > mapping_file/cat_3826_mapping_file.txt
 
-cat mapping_files/3823_mapping_file.txt mapping_files/cat_3824_mapping_file.txt mapping_files/cat_3825_mapping_file.txt mapping_files/cat_3826_mapping_file.txt > merged_mapping_file.txt
+cat mapping_files/3823_mapping_file.txt \
+  mapping_files/cat_3824_mapping_file.txt \
+  mapping_files/cat_3825_mapping_file.txt \
+  mapping_files/cat_3826_mapping_file.txt \
+  > merged_mapping_file.txt
 ```
 
 Now we can begin our standard qiime analysis.
 ```
-qiime feature-table summarize--i-table merged_table.qza --o-visualization merged_table.qzv --m-sample-metadata-file merged_mapping_file.txt
+qiime feature-table summarize \
+  --i-table merged_table.qza \
+  --o-visualization merged_table.qzv \
+  --m-sample-metadata-file merged_mapping_file.txt
 ```
 
 Manual inspection of the feature table reveals a natural sequence depth cutoff at 5892.
 ![image](https://user-images.githubusercontent.com/57808677/155183751-276b186e-998d-473e-972f-ac8b0bd99512.png)
+
+```
+qiime phylogeny align-to-tree-mafft-fasttree \
+  --i-sequences merged_rep-seqs.qza \
+  --o-alignment aligned-rep-seqs.qza \
+  --o-masked-alignment masked-aligned-rep-seqs.qza \
+  --o-tree unrooted-tree.qza \
+  --o-rooted-tree rooted-tree.qza
+
+qiime diversity core-metrics-phylogenetic \
+  --i-phylogeny rooted-tree-qza \
+  --i-table merged_table.qza \
+  --p-sampling-depth 5892 \
+  --m-metadata-file merged_mapping_file.txt \
+  --output-dir core-metrics-results
+
+qiime diversity alpha-group-significance \
+  --i-alpha-diversity core-metrics-results/faith_pd_vector.qza \
+  --m-metadata-file merged_mapping_file.txt \
+  --o-visualization core-metrics-results/faith-pd-group-significance.qzv
+
+qiime diversity alpha-group-significance \
+  --i-alpha-diversity core-metrics-results/evenness_vector.qza \
+  --m-metadata-file merged_mapping_file.txt \
+  --o-visualization core-metrics-results/evenness-group-significance.qzv
+```
 
 ## Usage:
 
