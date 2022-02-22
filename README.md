@@ -129,6 +129,11 @@ tail -n +2 mapping_files/3826_mapping_file.txt > mapping_file/cat_3826_mapping_f
 cat mapping_files/3823_mapping_file.txt mapping_files/cat_3824_mapping_file.txt mapping_files/cat_3825_mapping_file.txt mapping_files/cat_3826_mapping_file.txt > merged_mapping_file.txt
 ```
 
+Now we can begin our standard qiime analysis.
+```
+qiime feature-table summarize--i-table merged_table.qza --o-visualization merged_table.qzv --m-sample-metadata-file merged_mapping_file.txt
+```
+
 ## Usage:
 
 ## References
