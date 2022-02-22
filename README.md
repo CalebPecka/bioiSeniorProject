@@ -117,6 +117,18 @@ qiime dada2 denoise-paired --i-demultiplexed-seqs 3825-preprocessing/3825_demux.
 qiime dada2 denoise-paired --i-demultiplexed-seqs 3826-preprocessing/3826_demux.qza --p-trunc-len-f 0 --p-trunc-len-r 0 --o-representative-sequences 3826-preprocessing/3826-rep-seqs.qza --o-table 3826-preprocessing/3826-table.qza --o-denoising-stats 3826-preprocessing/3826-stats.qza
 ```
 
+Now that we've completed denoising, we need to merge the tables and the rep-seqs together into a single file. Qiime has built-in commands for the table.qza files and the rep-seq.files. Mapping files need to be handled separately using UNIX commands.
+```
+qiime feature-table merge --i-tables 3823-preprocessing/3823-table.qza --i-tables 3824-preprocessing/3824-table.qza --i-tables 3825-preprocessing/3825-table.qza --i-tables 3826-preprocessing/3826-table.qza --o-merged-table merged_table.qza
+qiime feature-table merge-seqs --i-data 3823-preprocessing/3823-rep-seqs.qza --i-data 3824-preprocessing/3824-rep-seqs.qza --i-data 3825-preprocessing/3825-rep-seqs.qza --i-data 3826-preprocessing/3826-rep-seqs --o-merged-data merged_rep-seqs.qza
+
+tail -n +2 mapping_files/3824_mapping_file.txt > mapping_file/cat_3824_mapping_file.txt
+tail -n +2 mapping_files/3825_mapping_file.txt > mapping_file/cat_3825_mapping_file.txt
+tail -n +2 mapping_files/3826_mapping_file.txt > mapping_file/cat_3826_mapping_file.txt
+
+cat mapping_files/3823_mapping_file.txt mapping_files/cat_3824_mapping_file.txt mapping_files/cat_3825_mapping_file.txt mapping_files/cat_3826_mapping_file.txt > merged_mapping_file.txt
+```
+
 ## Usage:
 
 ## References
