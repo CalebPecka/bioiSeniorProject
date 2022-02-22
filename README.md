@@ -134,6 +134,9 @@ Now we can begin our standard qiime analysis.
 qiime feature-table summarize--i-table merged_table.qza --o-visualization merged_table.qzv --m-sample-metadata-file merged_mapping_file.txt
 ```
 
+Manual inspection of the feature table reveals a natural sequence depth cutoff at 5892.
+![image](https://user-images.githubusercontent.com/57808677/155183751-276b186e-998d-473e-972f-ac8b0bd99512.png)
+
 ## Usage:
 
 ## References
