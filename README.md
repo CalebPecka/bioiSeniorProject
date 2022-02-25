@@ -241,6 +241,25 @@ qiime diversity alpha-group-significance \
 ```
 
 Run the MergeMappingFile.R in my local Capstone folder to modify the metadata text file format.
+This will write a new manifest file with extended metadata information.
+```
+qiime diversity core-metrics-phylogenetic \
+  --i-phylogeny rooted-tree-qza \
+  --i-table merged_table.qza \
+  --p-sampling-depth 5892 \
+  --m-metadata-file mapping_file_full_metadata.tsv \
+  --output-dir core-metrics-results-extended
+
+qiime diversity alpha-group-significance \
+  --i-alpha-diversity core-metrics-results-extended/faith_pd_vector.qza \
+  --m-metadata-file mapping_file_full_metadata.tsv \
+  --o-visualization core-metrics-results-extended/faith-pd-group-significance.qzv
+
+qiime diversity alpha-group-significance \
+  --i-alpha-diversity core-metrics-results-extended/evenness_vector.qza \
+  --m-metadata-mapping_file_full_metadata.tsv \
+  --o-visualization core-metrics-results-extended/evenness-group-significance.qzv
+```
 
 ## Usage:
 
