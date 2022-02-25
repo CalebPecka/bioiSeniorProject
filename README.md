@@ -261,6 +261,8 @@ qiime diversity alpha-group-significance \
   --o-visualization core-metrics-results-extended/evenness-group-significance.qzv
 ```
 
+From here I manually unzipped and extracted the "data/alpha-diversity.tsv" file from "core-metrics-results-extended/faith_pd_vector.qza".
+
 ## Usage:
 
 ## References
