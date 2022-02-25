@@ -241,7 +241,7 @@ qiime diversity alpha-group-significance \
 ```
 
 Run the MergeMappingFile.R in my local Capstone folder to modify the metadata text file format.
-This will write a new manifest file with extended metadata information.
+This will write a new manifest file with extended metadata information. The row "description" contains the patientID followed by a period followed by the time point when the stool sample was collected. These values allow us to identify the alpha diversity of each patient at any given time.
 ```
 qiime diversity core-metrics-phylogenetic \
   --i-phylogeny rooted-tree-qza \
