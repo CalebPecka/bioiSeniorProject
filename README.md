@@ -240,6 +240,8 @@ qiime diversity alpha-group-significance \
   --o-visualization core-metrics-results/evenness-group-significance.qzv
 ```
 
+Run the MergeMappingFile.R in my local Capstone folder to modify the metadata text file format.
+
 ## Usage:
 
 ## References
