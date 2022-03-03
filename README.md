@@ -290,6 +290,8 @@ Significant correlations include:
 Based on these results: bmi, height, and weight.pounds were removed.
 One linear model was created without metrics of improvment (ABC versus SRC versus PGI R), and another model included those metrics.
 
+Neither model could explain variation in alpha diversity, signifying that alpha diversity may not be a useful metric for measuring patient recovery.
+
 ## Usage:
 
 ## References
