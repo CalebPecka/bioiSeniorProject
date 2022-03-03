@@ -263,6 +263,10 @@ qiime diversity alpha-group-significance \
 
 From here I manually unzipped and extracted the "data/alpha-diversity.tsv" file from "core-metrics-results-extended/faith_pd_vector.qza".
 
+I manually curated "clinical_metadata.csv" from supplemental metadata in Kang et al., 2017 [1].
+
+Then I ran the clinical_metadata_analysis.R script to create a linear model between alpha diversity of other metadata metrics. The ggpairs function created clinical_multicollinearity.pdf
+
 ## Usage:
 
 ## References
