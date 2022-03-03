@@ -267,6 +267,26 @@ I manually curated "clinical_metadata.csv" from supplemental metadata in Kang et
 
 Then I ran the clinical_metadata_analysis.R script to create a linear model between alpha diversity of other metadata metrics. The ggpairs function created clinical_multicollinearity.pdf
 
+Significant correlations include:
+  week AND faith_pd -> -0.123*
+  height AND bmi -> 0.653***
+  weight AND bmi -> 0.915***
+  age AND bmi -> 0.686***
+  weight.pounds AND bmi -> 0.915***
+  end of treatment PGI R improvement AND bmi -> 0.226**
+  weight AND height -> 0.888***
+  age AND height -> 0.890***
+  weight.pounds AND height -> 0.888***
+  ABC change AND height -> 0.234**
+  SRS change AND height -> 0.232**
+  age AND weight -> 0.831***
+  weight.pounds AND weight -> 1.000***
+  weight.pounds AND age -> 0.810***
+  ABC change AND age -> -0.209**
+  
+  major correlations *** between all metrics of improvement (ABC versus SRS versus PGI R)
+  There were no correlations between any of these metrics and alpha diversity
+
 ## Usage:
 
 ## References
