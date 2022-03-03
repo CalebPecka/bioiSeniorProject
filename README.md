@@ -286,6 +286,9 @@ Significant correlations include:
   
   major correlations *** between all metrics of improvement (ABC versus SRS versus PGI R)
   There were no correlations between any of these metrics and alpha diversity
+  
+Based on these results: bmi, height, and weight.pounds were removed.
+One linear model was created without metrics of improvment (ABC versus SRC versus PGI R), and another model included those metrics.
 
 ## Usage:
 
