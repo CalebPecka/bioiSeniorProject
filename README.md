@@ -321,6 +321,88 @@ The next logical step is to reperform this analysis using shannon alpha diversit
 
 "alpha-diversity.tsv" was manually extracted from "core-metrics-results-extended/shannon_vector.qza" and renamed to "alpha-diversity-shannon.tsv".
 
+Multicollinearity analysis from "graphics/clinical_multicollinearity_shannon.pdf" shows similar results as faith_pd, **except all clinical recovery outcomes are correlated with shannon alpha diversity.**
+
+Based on violin plots, shannon entropy is increasing in autism patients from week 0 to week 18, stabilizing closer to the expected distribution in neurotypical individuals.
+
+
+
+
+
+Linear model of week0 neurotypical individuals:
+Coefficients:
+                Estimate Std. Error t value Pr(>|t|)   
+(Intercept)      4.89984    1.50509   3.256  0.00466 **
+age             -0.29831    0.19603  -1.522  0.14646   
+genderM          0.45694    0.86489   0.528  0.60410   
+weight..pounds.  0.02867    0.01635   1.754  0.09744 . 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.115 on 17 degrees of freedom
+Multiple R-squared:  0.1992,	Adjusted R-squared:  0.05793 
+F-statistic:  1.41 on 3 and 17 DF,  p-value: 0.2743
+
+
+
+
+Linear model of week18 neurotypical individuals:
+Coefficients:
+                Estimate Std. Error t value Pr(>|t|)   
+(Intercept)      4.44091    1.29573   3.427   0.0022 **
+age             -0.22119    0.15830  -1.397   0.1751   
+genderM          1.03042    0.65047   1.584   0.1263   
+weight..pounds.  0.02095    0.01605   1.305   0.2042   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.185 on 24 degrees of freedom
+Multiple R-squared:  0.1877,	Adjusted R-squared:  0.0862 
+F-statistic: 1.849 on 3 and 24 DF,  p-value: 0.1653
+
+
+
+
+
+
+Linear model of week0 autism individuals:
+Coefficients:
+                                      Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                           4.692563   0.545385   8.604 0.000136 ***
+age                                   0.224746   0.076111   2.953 0.025518 *  
+weight..pounds.                      -0.018778   0.003925  -4.784 0.003051 ** 
+end.of.treatment.PGI.R..improvement. -0.309521   0.114851  -2.695 0.035815 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.319 on 6 degrees of freedom
+Multiple R-squared:  0.8532,	Adjusted R-squared:  0.7798 
+F-statistic: 11.62 on 3 and 6 DF,  p-value: 0.00653
+
+Linear regression for the above plot based on age is in "graphics/shannon_diversity_decreases_with_age_in_autism_week0.pdf"
+[shannon_diversity_decreases_with_age_in_autism_week0.pdf](https://github.com/CalebPecka/bioiSeniorProject/files/8187427/shannon_diversity_decreases_with_age_in_autism_week0.pdf)
+
+
+
+
+
+
+Linear model of week18 autism individuals:
+Coefficients:
+                                     Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                          4.545769   0.878602   5.174 7.63e-05 ***
+age                                  0.022494   0.127143   0.177    0.862    
+weight..pounds.                      0.001599   0.008572   0.186    0.854    
+end.of.treatment.PGI.R..improvement. 0.192399   0.230900   0.833    0.416    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.7671 on 17 degrees of freedom
+Multiple R-squared:  0.08139,	Adjusted R-squared:  -0.08072 
+F-statistic: 0.5021 on 3 and 17 DF,  p-value: 0.6859
+
+
+
 ## Usage:
 
 ## References
