@@ -317,7 +317,7 @@ More linear models at the end of clinical_metadata_analysis.R were produced, sep
 
 All of these observations were made using faith's phylogenetic diversity score. The literature I've read that claims alpha diversity increases is based on shannon's diversity. "Shannon alpha diversity is sensitive to both the richness (total number of species in the community) and the evenness (relative abundance of different species). Faith's phylogenetic diversity represents the number of phylogenetic tree-units within a sample." (https://www.researchgate.net/figure/Boxplots-showing-distribution-of-Shannon-and-Faiths-phylogenetic-alpha-diversity_fig2_315813036#:~:text=Shannon%20alpha%20diversity%20is%20sensitive,tree%2Dunits%20within%20a%20sample.)
 
-The next logical step is to reperform this analysis using shannon alpha diversity indices.
+The next logical step is to reperform this analysis using shannon alpha diversity indices. To do this, I ran the Rscript for "shannon_alpha_diversity_analysis.R".
 
 "alpha-diversity.tsv" was manually extracted from "core-metrics-results-extended/shannon_vector.qza" and renamed to "alpha-diversity-shannon.tsv".
 
