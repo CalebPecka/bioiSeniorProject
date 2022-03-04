@@ -319,6 +319,8 @@ All of these observations were made using faith's phylogenetic diversity score. 
 
 The next logical step is to reperform this analysis using shannon alpha diversity indices.
 
+"alpha-diversity.tsv" was manually extracted from "core-metrics-results-extended/shannon_vector.qza" and renamed to "alpha-diversity-shannon.tsv".
+
 ## Usage:
 
 ## References
