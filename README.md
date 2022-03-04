@@ -313,6 +313,8 @@ Here is a graphic of the linear model of age_versus_alpha_diversity in neurotypi
 And here is the same graphic of the linear model in autism individuals
 ![image](https://github.com/CalebPecka/bioiSeniorProject/blob/main/graphics/autism_age_versus_alpha_diversity.pdf)
 
+More linear models at the end of clinical_metadata_analysis.R were produced, separating neurotypical individuals and autism individuals based on week 0 versus week 18. Alpha diversity overall decreased in BOTH experimental groups after the 18 week period. In addition, linear models were created for week0 neurotypical patients and week18 neurotypical patients, including metadata values for age, weight, and gender. Week0 neurotypical patients did NOT have a significant change in alpha diversity based on age, but week18 patients DID. This same observation is observed in autism patients. Overall, the treatment appears to be lowering alpha diversity, and the reduce in alpha diversity scales relative to age.
+
 ## Usage:
 
 ## References
