@@ -405,6 +405,20 @@ F-statistic: 0.5021 on 3 and 17 DF,  p-value: 0.6859
 
 
 "distance-matrix.tsv" was manually extracted from "core-metrics-results-extended/unweighted_unifrac_distance_matrix.qza".
+
+
+
+GTDB release202/202.0 was downloaded using the following command.
+```
+curl -LJO "https://data.ace.uq.edu.au/public/gtdb/data/releases/release202/202.0/bac120_taxonomy_r202.tsv.gz"
+```
+
+GTDB reference sequences were downloaded using the following command.
+```
+curl -LJO "https://data.ace.uq.edu.au/public/gtdb/data/releases/release202/202.0/genomic_files_reps/bac120_ssu_reps_r202.tar.gz"
+```
+
+
 ## Usage:
 
 ## References
