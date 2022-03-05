@@ -418,6 +418,11 @@ GTDB reference sequences were downloaded using the following command.
 curl -LJO "https://data.ace.uq.edu.au/public/gtdb/data/releases/release202/202.0/genomic_files_reps/bac120_ssu_reps_r202.tar.gz"
 ```
 
+Then we need to unzip their contents.
+```
+gunzip bac120_taxonomy_r202.tsv.gz
+tar -zxvf bac120_ssu_reps_r202.tar.gz
+```
 
 ## Usage:
 
