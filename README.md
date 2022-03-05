@@ -403,6 +403,8 @@ F-statistic: 0.5021 on 3 and 17 DF,  p-value: 0.6859
 
 
 
+
+"distance-matrix.tsv" was manually extracted from "core-metrics-results-extended/unweighted_unifrac_distance_matrix.qza".
 ## Usage:
 
 ## References
