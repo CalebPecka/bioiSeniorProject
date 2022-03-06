@@ -192,9 +192,9 @@ qiime feature-table merge-seqs \
   --i-data 3826-preprocessing/3826-rep-seqs \
   --o-merged-data merged_rep-seqs.qza
 
-tail -n +2 mapping_files/3824_mapping_file.txt > mapping_file/cat_3824_mapping_file.txt
-tail -n +2 mapping_files/3825_mapping_file.txt > mapping_file/cat_3825_mapping_file.txt
-tail -n +2 mapping_files/3826_mapping_file.txt > mapping_file/cat_3826_mapping_file.txt
+tail -n +2 mapping_files/3824_mapping_file.txt > mapping_files/cat_3824_mapping_file.txt
+tail -n +2 mapping_files/3825_mapping_file.txt > mapping_files/cat_3825_mapping_file.txt
+tail -n +2 mapping_files/3826_mapping_file.txt > mapping_files/cat_3826_mapping_file.txt
 
 cat mapping_files/3823_mapping_file.txt \
   mapping_files/cat_3824_mapping_file.txt \
