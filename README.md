@@ -457,6 +457,9 @@ qiime taxa barplot \
   --o-visualization taxa-bar-plots.qzv
 ```
 
+"level-7.csv" was manually extracted from the zipped archive for "taxa-bar-plots.qzv".
+
+Now we're interested in distinguishing individuals whose microbiome recovered versus those who did not recover. 
 
 
 ## Usage:
