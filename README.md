@@ -51,9 +51,9 @@ mv Undetermined_S0_L001_I1_001.fastq.gz barcodes.fastq.gz
 mv Undetermined_S0_L001_R1_001.fastq.gz sequences.fastq.gz
 cd ../..
 qiime tools import \
-  --type EMPSingleEndSequences \
-  --input-path FASTQ/3823 \
-  --output-path 3823-single-end-sequences.qza
+  --type MultiplexedSingleEndBarcodeInSequence \
+  --input-path FASTQ/3823/sequences.fastq.gz \
+  --output-path 3823_multiplexed_sequences.qza
 
 cd FASTQ/3824
 mv Run2_Undetermined_S0_L001_I1_001.fastq.gz barcodes.fastq.gz
@@ -88,12 +88,13 @@ qiime tools import \
 
 Now, we demultiplex the files. Again, procedures for demultiplexing are different depending on if we are working with single-end reads or paired-end reads.
 ```
-qiime demux emp-single \
-  --i-seqs 3823-single-end-sequences.qza \
+qiime cutadapt demux-single \
+  --i-seqs 3823_multiplexed_seqs.qza \
   --m-barcodes-file mapping_files/3823_mapping_file.txt \
   --m-barcodes-column barcode \
+  --p-error-rate 0 \
   --o-per-sample-sequences 3823_demux.qza \
-  --o-error-correction-details 3823_demux-details.qza
+  --o-untrimmed-sequences 3823_untrimmed.qza
 
 qiime demux emp-paired \
   --m-barcodes-file mapping_files/3824_mapping_file.txt \
@@ -127,9 +128,9 @@ mkdir 3824-preprocessing
 mkdir 3825-preprocessing
 mkdir 3826-preprocessing
 
-mv 3823-single-end-sequences.qza 3823-preprocessing/3823-single-end-sequences.qza
-mv 3823_demux-details.qza 3823-preprocessing/3823_demux-details.qza
-mv 3823_demux.qza 3823-preprocessing/3823_demux-details.qza
+mv 3823_untrimmed.qza 3823-preprocessing/3823_untrimmed.qza
+mv 3823_multiplexed_seqs.qza 3823-preprocessing/3823_multiplexed_seqs.qza
+mv 3823_demux.qza 3823-preprocessing/3823_demux.qza
 
 mv 3824-paired-end-sequences.qza 3824-preprocessing/3824-paired-end-sequences.qza
 mv 3824_demux-details.qza 3824-preprocessing/3824_demux-details.qza
