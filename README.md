@@ -461,6 +461,7 @@ qiime taxa barplot \
 
 Now we're interested in distinguishing individuals whose microbiome recovered versus those who did not recover. 
 
+"distance-matrix.tsv" was manually extracted from the zipped archive for "core-metrics-results-extended/jaccard_distance_matrix.qza".
 
 ## Usage:
 
