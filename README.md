@@ -288,13 +288,7 @@ Violin plots were used to show that, on average, faith_pd alpha diversity is dec
 
 ![FaithPD_violin_week18ASD](https://user-images.githubusercontent.com/57808677/162483612-4b2725cb-f035-43b5-96c3-6cd4d8775833.png)
 
-
-
-
-
-
-
-More linear models at the end of clinical_metadata_analysis.R were produced, separating neurotypical individuals and autism individuals based on week 0 versus week 18. Alpha diversity overall decreased in BOTH experimental groups after the 18 week period. In addition, linear models were created for week0 neurotypical patients and week18 neurotypical patients, including metadata values for age, weight, and gender. Week0 neurotypical patients did NOT have a significant change in alpha diversity based on age, but week18 patients DID. This same observation is observed in autism patients. Overall, the treatment appears to be lowering alpha diversity, and the reduce in alpha diversity scales relative to age. (Violin plots are in graphics folder as week0 and week18_autism_violin.pdf)
+More linear models at the end of clinical_metadata_analysis.R were produced, separating neurotypical individuals and autism individuals based on week 0 versus week 18. In general, these models were noisy, and the F statistics were not significant. These models were based on age, weight, and gender. Individuals vaues were statistically significant in week 18.
 
 All of these observations were made using faith's phylogenetic diversity score. The literature I've read that claims alpha diversity increases is based on shannon's diversity. "Shannon alpha diversity is sensitive to both the richness (total number of species in the community) and the evenness (relative abundance of different species). Faith's phylogenetic diversity represents the number of phylogenetic tree-units within a sample." (https://www.researchgate.net/figure/Boxplots-showing-distribution-of-Shannon-and-Faiths-phylogenetic-alpha-diversity_fig2_315813036#:~:text=Shannon%20alpha%20diversity%20is%20sensitive,tree%2Dunits%20within%20a%20sample.)
 
