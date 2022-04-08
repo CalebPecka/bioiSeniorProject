@@ -228,9 +228,9 @@ Run the MergeMappingFile.R in my local Capstone folder to modify the metadata te
 This will write a new manifest file with extended metadata information. The row "description" contains the patientID followed by a period followed by the time point when the stool sample was collected. These values allow us to identify the alpha diversity of each patient at any given time.
 ```
 qiime diversity core-metrics-phylogenetic \
-  --i-phylogeny rooted-tree-qza \
+  --i-phylogeny rooted-tree.qza \
   --i-table merged_table.qza \
-  --p-sampling-depth 5892 \
+  --p-sampling-depth 1525 \
   --m-metadata-file mapping_file_full_metadata.tsv \
   --output-dir core-metrics-results-extended
 
