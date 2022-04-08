@@ -212,8 +212,8 @@ qiime feature-table summarize \
   --m-sample-metadata-file merged_mapping_file.txt
 ```
 
-Manual inspection of the feature table reveals a natural sequence depth cutoff at 5892.
-![image](https://user-images.githubusercontent.com/57808677/155183751-276b186e-998d-473e-972f-ac8b0bd99512.png)
+Manual inspection of the feature table reveals that many samples have poor feature coverage. We want to preserve as many samples as reasonably possible since we need week18 results AND week0 results to make meaningful comparisons. For this reason, a low sampling depth of 1525 was chosen for this experiment.
+![SequencingDepth](https://user-images.githubusercontent.com/57808677/162447178-6bf9a34c-12ab-422d-bd45-0fb5af44d792.PNG)
 
 ```
 qiime phylogeny align-to-tree-mafft-fasttree \
