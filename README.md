@@ -51,9 +51,9 @@ mv Undetermined_S0_L001_I1_001.fastq.gz barcodes.fastq.gz
 mv Undetermined_S0_L001_R1_001.fastq.gz sequences.fastq.gz
 cd ../..
 qiime tools import \
-  --type EMPSingleEndSequences \
-  --input-path FASTQ/3823 \
-  --output-path 3823-single-end-sequences.qza
+  --type MultiplexedSingleEndBarcodeInSequence \
+  --input-path FASTQ/3823/sequences.fastq.gz \
+  --output-path 3823_multiplexed_sequences.qza
 
 cd FASTQ/3824
 mv Run2_Undetermined_S0_L001_I1_001.fastq.gz barcodes.fastq.gz
@@ -88,12 +88,13 @@ qiime tools import \
 
 Now, we demultiplex the files. Again, procedures for demultiplexing are different depending on if we are working with single-end reads or paired-end reads.
 ```
-qiime demux emp-single \
-  --i-seqs 3823-single-end-sequences.qza \
+qiime cutadapt demux-single \
+  --i-seqs 3823_multiplexed_seqs.qza \
   --m-barcodes-file mapping_files/3823_mapping_file.txt \
   --m-barcodes-column barcode \
+  --p-error-rate 0 \
   --o-per-sample-sequences 3823_demux.qza \
-  --o-error-correction-details 3823_demux-details.qza
+  --o-untrimmed-sequences 3823_untrimmed.qza
 
 qiime demux emp-paired \
   --m-barcodes-file mapping_files/3824_mapping_file.txt \
@@ -127,9 +128,9 @@ mkdir 3824-preprocessing
 mkdir 3825-preprocessing
 mkdir 3826-preprocessing
 
-mv 3823-single-end-sequences.qza 3823-preprocessing/3823-single-end-sequences.qza
-mv 3823_demux-details.qza 3823-preprocessing/3823_demux-details.qza
-mv 3823_demux.qza 3823-preprocessing/3823_demux-details.qza
+mv 3823_untrimmed.qza 3823-preprocessing/3823_untrimmed.qza
+mv 3823_multiplexed_seqs.qza 3823-preprocessing/3823_multiplexed_seqs.qza
+mv 3823_demux.qza 3823-preprocessing/3823_demux.qza
 
 mv 3824-paired-end-sequences.qza 3824-preprocessing/3824-paired-end-sequences.qza
 mv 3824_demux-details.qza 3824-preprocessing/3824_demux-details.qza
@@ -189,7 +190,7 @@ qiime feature-table merge-seqs \
   --i-data 3823-preprocessing/3823-rep-seqs.qza \
   --i-data 3824-preprocessing/3824-rep-seqs.qza \
   --i-data 3825-preprocessing/3825-rep-seqs.qza \
-  --i-data 3826-preprocessing/3826-rep-seqs \
+  --i-data 3826-preprocessing/3826-rep-seqs.qza \
   --o-merged-data merged_rep-seqs.qza
 
 tail -n +2 mapping_files/3824_mapping_file.txt > mapping_files/cat_3824_mapping_file.txt
@@ -211,8 +212,8 @@ qiime feature-table summarize \
   --m-sample-metadata-file merged_mapping_file.txt
 ```
 
-Manual inspection of the feature table reveals a natural sequence depth cutoff at 5892.
-![image](https://user-images.githubusercontent.com/57808677/155183751-276b186e-998d-473e-972f-ac8b0bd99512.png)
+Manual inspection of the feature table reveals that many samples have poor feature coverage. We want to preserve as many samples as reasonably possible since we need week18 results AND week0 results to make meaningful comparisons. For this reason, a low sampling depth of 1525 was chosen for this experiment.
+![SequencingDepth](https://user-images.githubusercontent.com/57808677/162447178-6bf9a34c-12ab-422d-bd45-0fb5af44d792.PNG)
 
 ```
 qiime phylogeny align-to-tree-mafft-fasttree \
@@ -221,32 +222,15 @@ qiime phylogeny align-to-tree-mafft-fasttree \
   --o-masked-alignment masked-aligned-rep-seqs.qza \
   --o-tree unrooted-tree.qza \
   --o-rooted-tree rooted-tree.qza
-
-qiime diversity core-metrics-phylogenetic \
-  --i-phylogeny rooted-tree-qza \
-  --i-table merged_table.qza \
-  --p-sampling-depth 5892 \
-  --m-metadata-file merged_mapping_file.txt \
-  --output-dir core-metrics-results
-
-qiime diversity alpha-group-significance \
-  --i-alpha-diversity core-metrics-results/faith_pd_vector.qza \
-  --m-metadata-file merged_mapping_file.txt \
-  --o-visualization core-metrics-results/faith-pd-group-significance.qzv
-
-qiime diversity alpha-group-significance \
-  --i-alpha-diversity core-metrics-results/evenness_vector.qza \
-  --m-metadata-file merged_mapping_file.txt \
-  --o-visualization core-metrics-results/evenness-group-significance.qzv
 ```
 
 Run the MergeMappingFile.R in my local Capstone folder to modify the metadata text file format.
 This will write a new manifest file with extended metadata information. The row "description" contains the patientID followed by a period followed by the time point when the stool sample was collected. These values allow us to identify the alpha diversity of each patient at any given time.
 ```
 qiime diversity core-metrics-phylogenetic \
-  --i-phylogeny rooted-tree-qza \
+  --i-phylogeny rooted-tree.qza \
   --i-table merged_table.qza \
-  --p-sampling-depth 5892 \
+  --p-sampling-depth 1525 \
   --m-metadata-file mapping_file_full_metadata.tsv \
   --output-dir core-metrics-results-extended
 
@@ -268,52 +252,45 @@ I manually curated "clinical_metadata.csv" from supplemental metadata in Kang et
 Then I ran the clinical_metadata_analysis.R script to create a linear model between alpha diversity of other metadata metrics. The ggpairs function created clinical_multicollinearity.pdf
 
 Significant correlations include:
-
-  week AND faith_pd -> -0.123*
-  
-  height AND bmi -> 0.653***
-  
-  weight AND bmi -> 0.915***
-  
-  age AND bmi -> 0.686***
-  
-  weight.pounds AND bmi -> 0.915***
-  
-  end of treatment PGI R improvement AND bmi -> 0.226**
-  
-  weight AND height -> 0.888***
-  
-  age AND height -> 0.890***
-  
-  weight.pounds AND height -> 0.888***
-  
-  ABC change AND height -> 0.234**
-  
-  SRS change AND height -> 0.232**
-  
-  age AND weight -> 0.831***
-  
-  weight.pounds AND weight -> 1.000***
-  
-  weight.pounds AND age -> 0.810***
-  
-  ABC change AND age -> -0.209**
-  
-  
-  major correlations *** between all metrics of improvement (ABC versus SRS versus PGI R)
-  There were no correlations between any of these metrics and alpha diversity
+```
+     faith_pd --- week           : -0.138*
+          bmi --- height         :  0.637***
+          bmi --- weight         :  0.905***
+          bmi --- age            :  0.646***
+          bmi --- weight.pounds  :  0.904***
+          bmi --- PGI.improve    :  0.283***
+       height --- weight         :  0.890***
+       height --- age            :  0.877***
+       height --- weight.pounds  :  0.890***
+       height --- ABC.change     : -0.183*
+       height --- ABC.change.1   :  0.223*
+       height --- SRS.change     :  0.190*
+       weight --- age            :  0.810***
+       weight --- weight.pounds  :  1.000***
+       weight --- PGI.improve    :  0.154*
+          age --- weight.pounds  :  0.800***
+          age --- ABC.change     : -0.244**
+weight.pounds --- PGI.improve    :  0.155*
+```
+ 
+There were major correlations *** between all metrics of improvement (ABC versus SRS versus PGI R).
+There were no correlations between any of these metrics and alpha diversity. Week is the only statistically significant correlation with alpha diversity.
   
 Based on these results: bmi, height, and weight.pounds were removed.
-One linear model was created without metrics of improvment (ABC versus SRC versus PGI R), and another model included those metrics.
 
-Neither model could explain variation in alpha diversity, signifying that alpha diversity may not be a useful metric for measuring patient recovery.
-Here is a graphic of the linear model of age_versus_alpha_diversity in neurotypical individuals
-![image](https://github.com/CalebPecka/bioiSeniorProject/blob/main/graphics/neurotypical_age_versus_alpha_diversity.pdf)
+![FaithPD_LinearModel](https://user-images.githubusercontent.com/57808677/162479785-f838a2a8-e178-4ec8-876e-f6b6b2f056e2.PNG)
 
-And here is the same graphic of the linear model in autism individuals
-![image](https://github.com/CalebPecka/bioiSeniorProject/blob/main/graphics/autism_age_versus_alpha_diversity.pdf)
+Age, weight, and gender are all having a significant impact on the microbiome alpha diversity.
 
-More linear models at the end of clinical_metadata_analysis.R were produced, separating neurotypical individuals and autism individuals based on week 0 versus week 18. Alpha diversity overall decreased in BOTH experimental groups after the 18 week period. In addition, linear models were created for week0 neurotypical patients and week18 neurotypical patients, including metadata values for age, weight, and gender. Week0 neurotypical patients did NOT have a significant change in alpha diversity based on age, but week18 patients DID. This same observation is observed in autism patients. Overall, the treatment appears to be lowering alpha diversity, and the reduce in alpha diversity scales relative to age. (Violin plots are in graphics folder as week0 and week18_autism_violin.pdf)
+Given there is no multicollinearity between patient faith_pd and clinical symptoms, faith_pd is a poor measurement of microbiome recovery.
+
+Violin plots were used to show that, on average, faith_pd alpha diversity is decreasing after FMT, becoming more similar to neurotypical individuals. Wilcox unpaired tests confirmed this observation.
+
+![FaithPD_violin_week0ASD](https://user-images.githubusercontent.com/57808677/162483601-aeedd775-73f4-49a8-9d60-711c294b4a66.png)
+
+![FaithPD_violin_week18ASD](https://user-images.githubusercontent.com/57808677/162483612-4b2725cb-f035-43b5-96c3-6cd4d8775833.png)
+
+More linear models at the end of clinical_metadata_analysis.R were produced, separating neurotypical individuals and autism individuals based on week 0 versus week 18. In general, these models were noisy, and the F statistics were not significant. These models were based on age, weight, and gender. Individuals vaues were statistically significant in week 18.
 
 All of these observations were made using faith's phylogenetic diversity score. The literature I've read that claims alpha diversity increases is based on shannon's diversity. "Shannon alpha diversity is sensitive to both the richness (total number of species in the community) and the evenness (relative abundance of different species). Faith's phylogenetic diversity represents the number of phylogenetic tree-units within a sample." (https://www.researchgate.net/figure/Boxplots-showing-distribution-of-Shannon-and-Faiths-phylogenetic-alpha-diversity_fig2_315813036#:~:text=Shannon%20alpha%20diversity%20is%20sensitive,tree%2Dunits%20within%20a%20sample.)
 
@@ -321,85 +298,118 @@ The next logical step is to reperform this analysis using shannon alpha diversit
 
 "alpha-diversity.tsv" was manually extracted from "core-metrics-results-extended/shannon_vector.qza" and renamed to "alpha-diversity-shannon.tsv".
 
-Multicollinearity analysis from "graphics/clinical_multicollinearity_shannon.pdf" shows similar results as faith_pd, **except all clinical recovery outcomes are correlated with shannon alpha diversity.**
+Multicollinearity analysis from "graphics/clinical_multicollinearity_shannon.pdf" shows similar results as faith_pd, **except all clinical recovery outcomes are correlated with shannon alpha diversity.** I also note that in both faith_pd and shannon diversity, **measurements of clinical improvement were sometimes significantly correlated with age, weight, and/or height.**
 
-Based on violin plots, shannon entropy is increasing in autism patients from week 0 to week 18, stabilizing closer to the expected distribution in neurotypical individuals.
+Based on violin plots, shannon entropy is increasing in autism patients from week 0 to week 18, stabilizing **higher** than the expected distribution in neurotypical individuals. This is especially prominent if we submit neurotypical samples to only include week 0. This result is supportive of the claim that FMT is not providing the patients with a more evenly distributed microbiome, it is always introducing higher diversity of bacteria.
+
+![Shannon_violin_week0ASD](https://user-images.githubusercontent.com/57808677/162488132-ee34e094-974b-41a3-ab1d-04f0da13a3d7.png)
+
+![Shannon_violin_week18ASD](https://user-images.githubusercontent.com/57808677/162488139-472e316c-4e11-456a-b9c8-c5dd879ceace.png)
+
+![Shannon_violin_week0ASD_week0neurotypical](https://user-images.githubusercontent.com/57808677/162488158-16b7bf63-fb08-4f22-a630-e428b8b5cb17.png)
+
+![Shannon_violin_week18ASD_week0neurotypical](https://user-images.githubusercontent.com/57808677/162488168-16d0930b-676a-4ddf-96d9-11827f10949a.png)
 
 
 
 
+Linear model of week 0 neurotypical individuals:
 
-Linear model of week0 neurotypical individuals:
+![LM_neurotypical_week0](https://user-images.githubusercontent.com/57808677/162489421-cfe8d8c8-5231-41a7-b8f8-46c51d435ef7.png)
+
+```
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.7325 -0.5592  0.1107  0.7350  1.4542 
+
 Coefficients:
                 Estimate Std. Error t value Pr(>|t|)   
-(Intercept)      4.89984    1.50509   3.256  0.00466 **
-age             -0.29831    0.19603  -1.522  0.14646   
-genderM          0.45694    0.86489   0.528  0.60410   
-weight..pounds.  0.02867    0.01635   1.754  0.09744 . 
+(Intercept)      4.44030    1.33956   3.315  0.00346 **
+age             -0.20574    0.16321  -1.261  0.22195   
+genderM          0.61085    0.80402   0.760  0.45627   
+weight..pounds.  0.02098    0.01343   1.562  0.13393   
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 1.115 on 17 degrees of freedom
-Multiple R-squared:  0.1992,	Adjusted R-squared:  0.05793 
-F-statistic:  1.41 on 3 and 17 DF,  p-value: 0.2743
+Residual standard error: 1.064 on 20 degrees of freedom
+Multiple R-squared:  0.1547,	Adjusted R-squared:  0.02789 
+F-statistic:  1.22 on 3 and 20 DF,  p-value: 0.3283
+```
 
+Linear model of week 18 neurotypical individuals:
 
+![LM_neurotypical_week18](https://user-images.githubusercontent.com/57808677/162489447-729279a3-05fa-48db-8b85-729381012cf5.png)
 
+```
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.37082 -0.65415  0.00453  0.87375  2.10216 
 
-Linear model of week18 neurotypical individuals:
 Coefficients:
                 Estimate Std. Error t value Pr(>|t|)   
-(Intercept)      4.44091    1.29573   3.427   0.0022 **
-age             -0.22119    0.15830  -1.397   0.1751   
-genderM          1.03042    0.65047   1.584   0.1263   
-weight..pounds.  0.02095    0.01605   1.305   0.2042   
+(Intercept)      4.42435    1.28519   3.443  0.00212 **
+age             -0.21672    0.15701  -1.380  0.18022   
+genderM          0.99254    0.64518   1.538  0.13704   
+weight..pounds.  0.02039    0.01592   1.281  0.21250   
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 1.185 on 24 degrees of freedom
-Multiple R-squared:  0.1877,	Adjusted R-squared:  0.0862 
-F-statistic: 1.849 on 3 and 24 DF,  p-value: 0.1653
+Residual standard error: 1.176 on 24 degrees of freedom
+Multiple R-squared:  0.181,	Adjusted R-squared:  0.07866 
+F-statistic: 1.768 on 3 and 24 DF,  p-value: 0.1801
+```
 
+Linear model of week 0 ASD individuals:
 
+![LM_ASD_week0](https://user-images.githubusercontent.com/57808677/162489502-1c60a7e7-2577-4305-8e98-701075464fc2.png)
 
+```
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.84595 -0.32739 -0.05381  0.23401  0.86596 
 
-
-
-Linear model of week0 autism individuals:
 Coefficients:
-                                      Estimate Std. Error t value Pr(>|t|)    
-(Intercept)                           4.692563   0.545385   8.604 0.000136 ***
-age                                   0.224746   0.076111   2.953 0.025518 *  
-weight..pounds.                      -0.018778   0.003925  -4.784 0.003051 ** 
-end.of.treatment.PGI.R..improvement. -0.309521   0.114851  -2.695 0.035815 *  
+                 Estimate Std. Error t value Pr(>|t|)   
+(Intercept)      3.242969   0.845876   3.834  0.00499 **
+age              0.297086   0.133748   2.221  0.05707 . 
+weight..pounds. -0.017166   0.009508  -1.806  0.10863   
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 0.319 on 6 degrees of freedom
-Multiple R-squared:  0.8532,	Adjusted R-squared:  0.7798 
-F-statistic: 11.62 on 3 and 6 DF,  p-value: 0.00653
+Residual standard error: 0.5667 on 8 degrees of freedom
+Multiple R-squared:  0.3854,	Adjusted R-squared:  0.2318 
+F-statistic: 2.508 on 2 and 8 DF,  p-value: 0.1427
+```
 
-Linear regression for the above plot based on age is in "graphics/shannon_diversity_decreases_with_age_in_autism_week0.pdf"
-[shannon_diversity_decreases_with_age_in_autism_week0.pdf](https://github.com/CalebPecka/bioiSeniorProject/files/8187427/shannon_diversity_decreases_with_age_in_autism_week0.pdf)
+Linear model of week 18 ASD individuals:
 
+![LM_ASD_week18](https://user-images.githubusercontent.com/57808677/162489529-5a7a9476-e30d-4e80-8927-a56f777fb006.png)
 
+```
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.3974 -0.1181  0.1110  0.4275  1.2149 
 
-
-
-
-Linear model of week18 autism individuals:
 Coefficients:
-                                     Estimate Std. Error t value Pr(>|t|)    
-(Intercept)                          4.545769   0.878602   5.174 7.63e-05 ***
-age                                  0.022494   0.127143   0.177    0.862    
-weight..pounds.                      0.001599   0.008572   0.186    0.854    
-end.of.treatment.PGI.R..improvement. 0.192399   0.230900   0.833    0.416    
+                 Estimate Std. Error t value Pr(>|t|)    
+(Intercept)      4.205184   0.893379   4.707 0.000135 ***
+age              0.130116   0.123581   1.053 0.304951    
+weight..pounds. -0.005196   0.008158  -0.637 0.531358    
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 0.7671 on 17 degrees of freedom
-Multiple R-squared:  0.08139,	Adjusted R-squared:  -0.08072 
-F-statistic: 0.5021 on 3 and 17 DF,  p-value: 0.6859
+Residual standard error: 0.8598 on 20 degrees of freedom
+Multiple R-squared:  0.05812,	Adjusted R-squared:  -0.03607 
+F-statistic: 0.6171 on 2 and 20 DF,  p-value: 0.5495
+```
+
+
+
+
+
+
+
+
 
 
 
