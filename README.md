@@ -277,17 +277,22 @@ There were major correlations *** between all metrics of improvement (ABC versus
 There were no correlations between any of these metrics and alpha diversity. Week is the only statistically significant correlation with alpha diversity.
   
 Based on these results: bmi, height, and weight.pounds were removed.
-One linear model was created without metrics of improvment (ABC versus SRC versus PGI R), and another model included those metrics.
+
+![FaithPD_LinearModel](https://user-images.githubusercontent.com/57808677/162479785-f838a2a8-e178-4ec8-876e-f6b6b2f056e2.PNG)
+Age, weight, and gender are all having a significant impact on the microbiome alpha diversity.
+
+Given there is no multicollinearity between patient faith_pd and clinical symptoms, faith_pd is a poor measurement of microbiome recovery.
+
+Violin plots were used to show that, on average, faith_pd alpha diversity is decreasing after FMT, becoming more similar to neurotypical individuals. Wilcox unpaired tests confirmed this observation.
+![FaithPD_violin_week0ASD](https://user-images.githubusercontent.com/57808677/162483601-aeedd775-73f4-49a8-9d60-711c294b4a66.png)
+
+![FaithPD_violin_week18ASD](https://user-images.githubusercontent.com/57808677/162483612-4b2725cb-f035-43b5-96c3-6cd4d8775833.png)
 
 
 
 
-Neither model could explain variation in alpha diversity, signifying that alpha diversity may not be a useful metric for measuring patient recovery.
-Here is a graphic of the linear model of age_versus_alpha_diversity in neurotypical individuals
-![image](https://github.com/CalebPecka/bioiSeniorProject/blob/main/graphics/neurotypical_age_versus_alpha_diversity.pdf)
 
-And here is the same graphic of the linear model in autism individuals
-![image](https://github.com/CalebPecka/bioiSeniorProject/blob/main/graphics/autism_age_versus_alpha_diversity.pdf)
+
 
 More linear models at the end of clinical_metadata_analysis.R were produced, separating neurotypical individuals and autism individuals based on week 0 versus week 18. Alpha diversity overall decreased in BOTH experimental groups after the 18 week period. In addition, linear models were created for week0 neurotypical patients and week18 neurotypical patients, including metadata values for age, weight, and gender. Week0 neurotypical patients did NOT have a significant change in alpha diversity based on age, but week18 patients DID. This same observation is observed in autism patients. Overall, the treatment appears to be lowering alpha diversity, and the reduce in alpha diversity scales relative to age. (Violin plots are in graphics folder as week0 and week18_autism_violin.pdf)
 
