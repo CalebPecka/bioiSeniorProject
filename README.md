@@ -296,7 +296,7 @@ The next logical step is to reperform this analysis using shannon alpha diversit
 
 "alpha-diversity.tsv" was manually extracted from "core-metrics-results-extended/shannon_vector.qza" and renamed to "alpha-diversity-shannon.tsv".
 
-Multicollinearity analysis from "graphics/clinical_multicollinearity_shannon.pdf" shows similar results as faith_pd, **except all clinical recovery outcomes are correlated with shannon alpha diversity.**
+Multicollinearity analysis from "graphics/clinical_multicollinearity_shannon.pdf" shows similar results as faith_pd, **except all clinical recovery outcomes are correlated with shannon alpha diversity.** I also note that in both faith_pd and shannon diversity, **measurements of clinical improvement were sometimes significantly correlated with age, weight, and/or height.**
 
 Based on violin plots, shannon entropy is increasing in autism patients from week 0 to week 18, stabilizing closer to the expected distribution in neurotypical individuals.
 
