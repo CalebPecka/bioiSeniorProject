@@ -222,23 +222,6 @@ qiime phylogeny align-to-tree-mafft-fasttree \
   --o-masked-alignment masked-aligned-rep-seqs.qza \
   --o-tree unrooted-tree.qza \
   --o-rooted-tree rooted-tree.qza
-
-qiime diversity core-metrics-phylogenetic \
-  --i-phylogeny rooted-tree-qza \
-  --i-table merged_table.qza \
-  --p-sampling-depth 5892 \
-  --m-metadata-file merged_mapping_file.txt \
-  --output-dir core-metrics-results
-
-qiime diversity alpha-group-significance \
-  --i-alpha-diversity core-metrics-results/faith_pd_vector.qza \
-  --m-metadata-file merged_mapping_file.txt \
-  --o-visualization core-metrics-results/faith-pd-group-significance.qzv
-
-qiime diversity alpha-group-significance \
-  --i-alpha-diversity core-metrics-results/evenness_vector.qza \
-  --m-metadata-file merged_mapping_file.txt \
-  --o-visualization core-metrics-results/evenness-group-significance.qzv
 ```
 
 Run the MergeMappingFile.R in my local Capstone folder to modify the metadata text file format.
