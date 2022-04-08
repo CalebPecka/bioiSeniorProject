@@ -313,77 +313,103 @@ Based on violin plots, shannon entropy is increasing in autism patients from wee
 
 
 
-Linear model of week0 neurotypical individuals:
+Linear model of week 0 neurotypical individuals:
+
+![LM_neurotypical_week0](https://user-images.githubusercontent.com/57808677/162489421-cfe8d8c8-5231-41a7-b8f8-46c51d435ef7.png)
+
+```
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.7325 -0.5592  0.1107  0.7350  1.4542 
+
 Coefficients:
                 Estimate Std. Error t value Pr(>|t|)   
-(Intercept)      4.89984    1.50509   3.256  0.00466 **
-age             -0.29831    0.19603  -1.522  0.14646   
-genderM          0.45694    0.86489   0.528  0.60410   
-weight..pounds.  0.02867    0.01635   1.754  0.09744 . 
+(Intercept)      4.44030    1.33956   3.315  0.00346 **
+age             -0.20574    0.16321  -1.261  0.22195   
+genderM          0.61085    0.80402   0.760  0.45627   
+weight..pounds.  0.02098    0.01343   1.562  0.13393   
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 1.115 on 17 degrees of freedom
-Multiple R-squared:  0.1992,	Adjusted R-squared:  0.05793 
-F-statistic:  1.41 on 3 and 17 DF,  p-value: 0.2743
+Residual standard error: 1.064 on 20 degrees of freedom
+Multiple R-squared:  0.1547,	Adjusted R-squared:  0.02789 
+F-statistic:  1.22 on 3 and 20 DF,  p-value: 0.3283
+```
 
+Linear model of week 18 neurotypical individuals:
 
+![LM_neurotypical_week18](https://user-images.githubusercontent.com/57808677/162489447-729279a3-05fa-48db-8b85-729381012cf5.png)
 
+```
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.37082 -0.65415  0.00453  0.87375  2.10216 
 
-Linear model of week18 neurotypical individuals:
 Coefficients:
                 Estimate Std. Error t value Pr(>|t|)   
-(Intercept)      4.44091    1.29573   3.427   0.0022 **
-age             -0.22119    0.15830  -1.397   0.1751   
-genderM          1.03042    0.65047   1.584   0.1263   
-weight..pounds.  0.02095    0.01605   1.305   0.2042   
+(Intercept)      4.42435    1.28519   3.443  0.00212 **
+age             -0.21672    0.15701  -1.380  0.18022   
+genderM          0.99254    0.64518   1.538  0.13704   
+weight..pounds.  0.02039    0.01592   1.281  0.21250   
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 1.185 on 24 degrees of freedom
-Multiple R-squared:  0.1877,	Adjusted R-squared:  0.0862 
-F-statistic: 1.849 on 3 and 24 DF,  p-value: 0.1653
+Residual standard error: 1.176 on 24 degrees of freedom
+Multiple R-squared:  0.181,	Adjusted R-squared:  0.07866 
+F-statistic: 1.768 on 3 and 24 DF,  p-value: 0.1801
+```
 
+Linear model of week 0 ASD individuals:
 
+![LM_ASD_week0](https://user-images.githubusercontent.com/57808677/162489502-1c60a7e7-2577-4305-8e98-701075464fc2.png)
 
+```
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.84595 -0.32739 -0.05381  0.23401  0.86596 
 
-
-
-Linear model of week0 autism individuals:
 Coefficients:
-                                      Estimate Std. Error t value Pr(>|t|)    
-(Intercept)                           4.692563   0.545385   8.604 0.000136 ***
-age                                   0.224746   0.076111   2.953 0.025518 *  
-weight..pounds.                      -0.018778   0.003925  -4.784 0.003051 ** 
-end.of.treatment.PGI.R..improvement. -0.309521   0.114851  -2.695 0.035815 *  
+                 Estimate Std. Error t value Pr(>|t|)   
+(Intercept)      3.242969   0.845876   3.834  0.00499 **
+age              0.297086   0.133748   2.221  0.05707 . 
+weight..pounds. -0.017166   0.009508  -1.806  0.10863   
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 0.319 on 6 degrees of freedom
-Multiple R-squared:  0.8532,	Adjusted R-squared:  0.7798 
-F-statistic: 11.62 on 3 and 6 DF,  p-value: 0.00653
+Residual standard error: 0.5667 on 8 degrees of freedom
+Multiple R-squared:  0.3854,	Adjusted R-squared:  0.2318 
+F-statistic: 2.508 on 2 and 8 DF,  p-value: 0.1427
+```
 
-Linear regression for the above plot based on age is in "graphics/shannon_diversity_decreases_with_age_in_autism_week0.pdf"
-[shannon_diversity_decreases_with_age_in_autism_week0.pdf](https://github.com/CalebPecka/bioiSeniorProject/files/8187427/shannon_diversity_decreases_with_age_in_autism_week0.pdf)
+Linear model of week 18 ASD individuals:
 
+![LM_ASD_week18](https://user-images.githubusercontent.com/57808677/162489529-5a7a9476-e30d-4e80-8927-a56f777fb006.png)
 
+```
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.3974 -0.1181  0.1110  0.4275  1.2149 
 
-
-
-
-Linear model of week18 autism individuals:
 Coefficients:
-                                     Estimate Std. Error t value Pr(>|t|)    
-(Intercept)                          4.545769   0.878602   5.174 7.63e-05 ***
-age                                  0.022494   0.127143   0.177    0.862    
-weight..pounds.                      0.001599   0.008572   0.186    0.854    
-end.of.treatment.PGI.R..improvement. 0.192399   0.230900   0.833    0.416    
+                 Estimate Std. Error t value Pr(>|t|)    
+(Intercept)      4.205184   0.893379   4.707 0.000135 ***
+age              0.130116   0.123581   1.053 0.304951    
+weight..pounds. -0.005196   0.008158  -0.637 0.531358    
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 0.7671 on 17 degrees of freedom
-Multiple R-squared:  0.08139,	Adjusted R-squared:  -0.08072 
-F-statistic: 0.5021 on 3 and 17 DF,  p-value: 0.6859
+Residual standard error: 0.8598 on 20 degrees of freedom
+Multiple R-squared:  0.05812,	Adjusted R-squared:  -0.03607 
+F-statistic: 0.6171 on 2 and 20 DF,  p-value: 0.5495
+```
+
+
+
+
+
+
+
+
 
 
 
