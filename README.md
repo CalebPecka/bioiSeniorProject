@@ -279,11 +279,13 @@ There were no correlations between any of these metrics and alpha diversity. Wee
 Based on these results: bmi, height, and weight.pounds were removed.
 
 ![FaithPD_LinearModel](https://user-images.githubusercontent.com/57808677/162479785-f838a2a8-e178-4ec8-876e-f6b6b2f056e2.PNG)
+
 Age, weight, and gender are all having a significant impact on the microbiome alpha diversity.
 
 Given there is no multicollinearity between patient faith_pd and clinical symptoms, faith_pd is a poor measurement of microbiome recovery.
 
 Violin plots were used to show that, on average, faith_pd alpha diversity is decreasing after FMT, becoming more similar to neurotypical individuals. Wilcox unpaired tests confirmed this observation.
+
 ![FaithPD_violin_week0ASD](https://user-images.githubusercontent.com/57808677/162483601-aeedd775-73f4-49a8-9d60-711c294b4a66.png)
 
 ![FaithPD_violin_week18ASD](https://user-images.githubusercontent.com/57808677/162483612-4b2725cb-f035-43b5-96c3-6cd4d8775833.png)
@@ -298,8 +300,15 @@ The next logical step is to reperform this analysis using shannon alpha diversit
 
 Multicollinearity analysis from "graphics/clinical_multicollinearity_shannon.pdf" shows similar results as faith_pd, **except all clinical recovery outcomes are correlated with shannon alpha diversity.** I also note that in both faith_pd and shannon diversity, **measurements of clinical improvement were sometimes significantly correlated with age, weight, and/or height.**
 
-Based on violin plots, shannon entropy is increasing in autism patients from week 0 to week 18, stabilizing closer to the expected distribution in neurotypical individuals.
+Based on violin plots, shannon entropy is increasing in autism patients from week 0 to week 18, stabilizing **higher** than the expected distribution in neurotypical individuals. This is especially prominent if we submit neurotypical samples to only include week 0. This result is supportive of the claim that FMT is not providing the patients with a more evenly distributed microbiome, it is always introducing higher diversity of bacteria.
 
+![Shannon_violin_week0ASD](https://user-images.githubusercontent.com/57808677/162488132-ee34e094-974b-41a3-ab1d-04f0da13a3d7.png)
+
+![Shannon_violin_week18ASD](https://user-images.githubusercontent.com/57808677/162488139-472e316c-4e11-456a-b9c8-c5dd879ceace.png)
+
+![Shannon_violin_week0ASD_week0neurotypical](https://user-images.githubusercontent.com/57808677/162488158-16b7bf63-fb08-4f22-a630-e428b8b5cb17.png)
+
+![Shannon_violin_week18ASD_week0neurotypical](https://user-images.githubusercontent.com/57808677/162488168-16d0930b-676a-4ddf-96d9-11827f10949a.png)
 
 
 
