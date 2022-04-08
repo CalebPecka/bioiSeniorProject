@@ -190,7 +190,7 @@ qiime feature-table merge-seqs \
   --i-data 3823-preprocessing/3823-rep-seqs.qza \
   --i-data 3824-preprocessing/3824-rep-seqs.qza \
   --i-data 3825-preprocessing/3825-rep-seqs.qza \
-  --i-data 3826-preprocessing/3826-rep-seqs \
+  --i-data 3826-preprocessing/3826-rep-seqs.qza \
   --o-merged-data merged_rep-seqs.qza
 
 tail -n +2 mapping_files/3824_mapping_file.txt > mapping_files/cat_3824_mapping_file.txt
