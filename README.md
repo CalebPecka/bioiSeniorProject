@@ -252,43 +252,35 @@ I manually curated "clinical_metadata.csv" from supplemental metadata in Kang et
 Then I ran the clinical_metadata_analysis.R script to create a linear model between alpha diversity of other metadata metrics. The ggpairs function created clinical_multicollinearity.pdf
 
 Significant correlations include:
-
-  week AND faith_pd -> -0.123*
-  
-  height AND bmi -> 0.653***
-  
-  weight AND bmi -> 0.915***
-  
-  age AND bmi -> 0.686***
-  
-  weight.pounds AND bmi -> 0.915***
-  
-  end of treatment PGI R improvement AND bmi -> 0.226**
-  
-  weight AND height -> 0.888***
-  
-  age AND height -> 0.890***
-  
-  weight.pounds AND height -> 0.888***
-  
-  ABC change AND height -> 0.234**
-  
-  SRS change AND height -> 0.232**
-  
-  age AND weight -> 0.831***
-  
-  weight.pounds AND weight -> 1.000***
-  
-  weight.pounds AND age -> 0.810***
-  
-  ABC change AND age -> -0.209**
-  
-  
-  major correlations *** between all metrics of improvement (ABC versus SRS versus PGI R)
-  There were no correlations between any of these metrics and alpha diversity
+```
+     faith_pd --- week           : -0.138*
+          bmi --- height         :  0.637***
+          bmi --- weight         :  0.905***
+          bmi --- age            :  0.646***
+          bmi --- weight.pounds  :  0.904***
+          bmi --- PGI.improve    :  0.283***
+       height --- weight         :  0.890***
+       height --- age            :  0.877***
+       height --- weight.pounds  :  0.890***
+       height --- ABC.change     : -0.183*
+       height --- ABC.change.1   :  0.223*
+       height --- SRS.change     :  0.190*
+       weight --- age            :  0.810***
+       weight --- weight.pounds  :  1.000***
+       weight --- PGI.improve    :  0.154*
+          age --- weight.pounds  :  0.800***
+          age --- ABC.change     : -0.244**
+weight.pounds --- PGI.improve    :  0.155*
+```
+ 
+There were major correlations *** between all metrics of improvement (ABC versus SRS versus PGI R).
+There were no correlations between any of these metrics and alpha diversity. Week is the only statistically significant correlation with alpha diversity.
   
 Based on these results: bmi, height, and weight.pounds were removed.
 One linear model was created without metrics of improvment (ABC versus SRC versus PGI R), and another model included those metrics.
+
+
+
 
 Neither model could explain variation in alpha diversity, signifying that alpha diversity may not be a useful metric for measuring patient recovery.
 Here is a graphic of the linear model of age_versus_alpha_diversity in neurotypical individuals
