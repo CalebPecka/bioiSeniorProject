@@ -473,7 +473,11 @@ Now we're interested in distinguishing individuals whose microbiome recovered ve
 
 "distance-matrix.tsv" was manually extracted from the zipped archive for "core-metrics-results-extended/jaccard_distance_matrix.qza".
 
-Running the 'level-7-bacterial-diversity.R' script will return our final results. This is the stage in the project in which we are interested in determining whether or not a patient's microbiome has 'improved' after FMT. One possible measurement is to determine whether or not a patient's microbiome became more similar to the donor patient. Patient's were matched, and mean jaccard distances were calculated for each week 18 sample with the paired donors. 100% samples that were processed by qiime became more similar to the donor patients. These results were heavily impacted by the poor feature frequency of the original steps.
+Running the 'level-7-bacterial-diversity.R' script will return our final results. This is the stage in the project in which we are interested in determining whether or not a patient's microbiome has 'improved' after FMT. One possible measurement is to determine whether or not a patient's microbiome became more similar to the donor patient. Patient's were matched, and mean jaccard distances were calculated for each week 18 sample with the paired donors. 100% samples that were processed by qiime became more similar to the donor patients. These results were heavily impacted by the poor feature frequency of the original steps. For both these reasons, this is an unsuitable measurement. Instead, we measure whether or not alpha diversity increased after week 18 FMT (which is NOT the case in all 18 patients). In cases when no week 18 samples were available, the latest time measurement was used instead (i.e. week 16).
+![Boxplot_for_responder_conditions](https://user-images.githubusercontent.com/57808677/163315359-b708f0e0-cd47-495b-9974-77608837f6b6.png)
+
+This plot shows us that 100% of the patients whose alpha diversity increased (n = 11) saw statistically significant improvements to SRS clinical classifications of ASD. 100% of the patients whose alpha diversity decreased (n = 6) did change SRS classifications. 
+Of the 11 patients whose microbiome alpha diversity increased, 4 of which saw major improvements to SRS scores, but 7 of the patients did not cross the SRS ASD threshold of 74. 
 
 ## Usage:
 
