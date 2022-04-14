@@ -496,7 +496,7 @@ Then I wanted to observe how the bacterial abundances are different according to
 
 All 4 of these genes had almost 10 fold increases in those who responded to FMT and saw increases in alpha diversity.
 
-Wilcoxon tests showed no significant difference in plasma metabolites for alpha recovery vs no alpha recovery NOR recovery with clinical improvement vs recovery limited clinical improvement. It is worth
+Wilcoxon tests showed no significant difference in plasma metabolites for alpha recovery vs no alpha recovery NOR recovery with clinical improvement vs recovery limited clinical improvement. It is worth noting that the latest plasma metabolites were retrieved on week 10, but the latest stool metabolites were retrieved on week 18.
 
 ## Usage:
 
