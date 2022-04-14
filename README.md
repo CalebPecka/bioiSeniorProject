@@ -498,6 +498,8 @@ All 4 of these genes had almost 10 fold increases in those who responded to FMT 
 
 Wilcoxon tests showed no significant difference in plasma metabolites for alpha recovery vs no alpha recovery NOR recovery with clinical improvement vs recovery limited clinical improvement. It is worth noting that the latest plasma metabolites were retrieved on week 10, but the latest stool metabolites were retrieved on week 18.
 
+In the stool metabolites, indone has a 5 fold increase in patients whose microbiome recovered, but their clinical symptoms did not. Indole has been associated with increased levels in ASD urine samples compared to healthy (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6539237/).
+
 ## Usage:
 
 ## References
