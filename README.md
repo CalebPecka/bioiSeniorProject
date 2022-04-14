@@ -479,6 +479,12 @@ Running the 'level-7-bacterial-diversity.R' script will return our final results
 This plot shows us that 100% of the patients whose alpha diversity increased (n = 11) saw statistically significant improvements to SRS clinical classifications of ASD. 100% of the patients whose alpha diversity decreased (n = 6) did change SRS classifications. 
 Of the 11 patients whose microbiome alpha diversity increased, 4 of which saw major improvements to SRS scores, but 7 of the patients did not cross the SRS ASD threshold of 74. 
 
+Finally, I mapped these different classifications according to the patient diet. No statistically significant observations were made.
+![food_group_boxplots_all_recovery_subsets](https://user-images.githubusercontent.com/57808677/163322246-bce6f488-5ddd-4607-b90d-e8b3aa179444.png)
+
+![food_group_boxplots_microbiome_recovery](https://user-images.githubusercontent.com/57808677/163322257-9cc4f809-782e-47ca-b2ce-d9895b89a59d.png)
+
+
 ## Usage:
 
 ## References
