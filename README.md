@@ -484,10 +484,17 @@ Finally, I mapped these different classifications according to the patient diet.
 
 ![food_group_boxplots_microbiome_recovery](https://user-images.githubusercontent.com/57808677/163322257-9cc4f809-782e-47ca-b2ce-d9895b89a59d.png)
 
-Then I wanted to observe how the bacterial abundances are different according to these different classifications. I used taxonomic counts from qiime, subset the list according to the top 50 differentially abundant taxa, and performed FDR correction. The list of differentially abundant taxa is quite small. 
+Then I wanted to observe how the bacterial abundances are different according to these different classifications. I used taxonomic counts from qiime. Taxa were subset to only include those whose total count was greater than 10. FDR correction was performed afterwards. The list of differentially abundant taxa is quite small. 
 
-![differential_taxa_responder_versus_nonresponder_microbiome_FMT](https://user-images.githubusercontent.com/57808677/163328577-7128f335-7058-473c-b85d-7a01770b5a4c.PNG)
+![differential_taxa_responder_versus_nonresponder_microbiome_FMT](https://user-images.githubusercontent.com/57808677/163329814-df0384a6-05c4-468d-81ed-592300d8e792.PNG)
 
+"Akkermansia muciniphila is a mucin-degrading bacterium commonly found in human gut. A. muciniphila has been inversely associated with obesity, diabetes, inflammation, and metabolic disorders." (Zhou K. (2017). Strategies to promote abundance of Akkermansia muciniphila, an emerging probiotics in the gut, evidence from dietary intervention studies. Journal of functional foods, 33, 194–201. https://doi.org/10.1016/j.jff.2017.03.045)
+
+"Alistipes species are indole positive, affecting the serotonin precursor tryptophan, while Faecalibacterium has anti-inflammatory properties" (Jiang et al., 2015)
+
+"Parabacteroides and Escherichia express GABA producing pathways, a key neurotransmitter for my study" (Strandwitz, P., Kim, K. H., Terekhova, D., Liu, J. K., Sharma, A., Levering, J., McDonald, D., Dietrich, D., Ramadhar, T. R., Lekbua, A., Mroue, N., Liston, C., Stewart, E. J., Dubin, M. J., Zengler, K., Knight, R., Gilbert, J. A., Clardy, J., & Lewis, K. (2019). GABA-modulating bacteria of the human gut microbiota. Nature microbiology, 4(3), 396–403. https://doi.org/10.1038/s41564-018-0307-3)
+
+All 4 of these genes had almost 10 fold increases in those who responded to FMT and saw increases in alpha diversity.
 
 
 
