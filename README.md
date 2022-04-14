@@ -479,7 +479,7 @@ Running the 'level-7-bacterial-diversity.R' script will return our final results
 This plot shows us that 100% of the patients whose alpha diversity increased (n = 11) saw statistically significant improvements to SRS clinical classifications of ASD. 100% of the patients whose alpha diversity decreased (n = 6) did change SRS classifications. 
 Of the 11 patients whose microbiome alpha diversity increased, 4 of which saw major improvements to SRS scores, but 7 of the patients did not cross the SRS ASD threshold of 74. 
 
-Finally, I mapped these different classifications according to the patient diet. No statistically significant observations were made.
+Finally, I mapped these different classifications according to the patient diet. No statistically significant observations were made. The study is limited because, while FMT oral treatment data is longitudinal, food consumption data is not longitudinal. This means our data has less statistical power than the multiple runs from each microbiome sequence. It would've also been nice to see if there's a longitudinal correlation between diet and increase of bacterial growth (increase in alpha diversity).
 ![food_group_boxplots_all_recovery_subsets](https://user-images.githubusercontent.com/57808677/163322246-bce6f488-5ddd-4607-b90d-e8b3aa179444.png)
 
 ![food_group_boxplots_microbiome_recovery](https://user-images.githubusercontent.com/57808677/163322257-9cc4f809-782e-47ca-b2ce-d9895b89a59d.png)
@@ -496,7 +496,7 @@ Then I wanted to observe how the bacterial abundances are different according to
 
 All 4 of these genes had almost 10 fold increases in those who responded to FMT and saw increases in alpha diversity.
 
-Wilcoxon tests showed no significant difference in plasma metabolites for alpha recovery vs no alpha recovery NOR recovery with clinical improvement vs recovery limited clinical improvement.
+Wilcoxon tests showed no significant difference in plasma metabolites for alpha recovery vs no alpha recovery NOR recovery with clinical improvement vs recovery limited clinical improvement. It is worth
 
 ## Usage:
 
