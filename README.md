@@ -500,6 +500,8 @@ Wilcoxon tests showed no significant difference in plasma metabolites for alpha 
 
 In the stool metabolites, indone has a 5 fold increase in patients whose microbiome recovered, but their clinical symptoms did not. Indole has been associated with increased levels in ASD urine samples compared to healthy (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6539237/). After reinvestigating the plasma metabolites, **indole was not listed in the raw plasma metabolite data.**
 
+"Indole is absorbed in the gut, thereafter it is oxidized and sulphated in the liver to indoxyl sulphate. Indoxyl sulphate may lead to an accumulation of several neurotransmitters in the brain, blocking the efflux transporter in the BBB" (Gevi, F., Zolla, L., Gabriele, S., & Persico, A. M. (2016). Urinary metabolomics of young Italian autistic children supports abnormal tryptophan and purine metabolism. Molecular autism, 7, 47. https://doi.org/10.1186/s13229-016-0109-5)
+
 ## Usage:
 
 ## References
