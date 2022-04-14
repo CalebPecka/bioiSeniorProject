@@ -473,7 +473,7 @@ Now we're interested in distinguishing individuals whose microbiome recovered ve
 
 "distance-matrix.tsv" was manually extracted from the zipped archive for "core-metrics-results-extended/jaccard_distance_matrix.qza".
 
-Running the 'level-7-bacterial-diversity.R' script will return our final results.
+Running the 'level-7-bacterial-diversity.R' script will return our final results. This is the stage in the project in which we are interested in determining whether or not a patient's microbiome has 'improved' after FMT. One possible measurement is to determine whether or not a patient's microbiome became more similar to the donor patient. Patient's were matched, and mean jaccard distances were calculated for each week 18 sample with the paired donors. 100% samples that were processed by qiime became more similar to the donor patients. These results were heavily impacted by the poor feature frequency of the original steps.
 
 ## Usage:
 
