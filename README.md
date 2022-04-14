@@ -484,6 +484,12 @@ Finally, I mapped these different classifications according to the patient diet.
 
 ![food_group_boxplots_microbiome_recovery](https://user-images.githubusercontent.com/57808677/163322257-9cc4f809-782e-47ca-b2ce-d9895b89a59d.png)
 
+Then I wanted to observe how the bacterial abundances are different according to these different classifications. I used taxonomic counts from qiime, subset the list according to the top 50 differentially abundant taxa, and performed FDR correction. The list of differentially abundant taxa is quite small. 
+
+![differential_taxa_responder_versus_nonresponder_microbiome_FMT](https://user-images.githubusercontent.com/57808677/163328577-7128f335-7058-473c-b85d-7a01770b5a4c.PNG)
+
+
+
 
 ## Usage:
 
