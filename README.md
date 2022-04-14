@@ -473,6 +473,8 @@ Now we're interested in distinguishing individuals whose microbiome recovered ve
 
 "distance-matrix.tsv" was manually extracted from the zipped archive for "core-metrics-results-extended/jaccard_distance_matrix.qza".
 
+Running the 'level-7-bacterial-diversity.R' script will return our final results.
+
 ## Usage:
 
 ## References
