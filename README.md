@@ -502,6 +502,8 @@ In the stool metabolites, indone has a 5 fold increase in patients whose microbi
 
 "Indole is absorbed in the gut, thereafter it is oxidized and sulphated in the liver to indoxyl sulphate. Indoxyl sulphate may lead to an accumulation of several neurotransmitters in the brain, blocking the efflux transporter in the BBB" (Gevi, F., Zolla, L., Gabriele, S., & Persico, A. M. (2016). Urinary metabolomics of young Italian autistic children supports abnormal tryptophan and purine metabolism. Molecular autism, 7, 47. https://doi.org/10.1186/s13229-016-0109-5)
 
+Many fermenting bacteria are able to degrade the aromatic amino acids tyrosine (Tyr), phenylalanine (Phe), and tryptophan (Trp) to form p-hydroxyphenylacetate, phenylacetate, and indoleacetate, respectively. Some bacteria are able to carry out an additional step, involving the chemically challenging decarboxylation of these compounds to form the volatile aromatic compounds cresol5, toluene6,7, and skatole (https://www.nature.com/articles/s41467-018-06627-x).
+
 ## Usage:
 
 ## References
