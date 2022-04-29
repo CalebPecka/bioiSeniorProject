@@ -1,9 +1,12 @@
-# bioiSeniorProject
-A Short description about your project
+# Investigating stagnant clinical outcomes after fecal microbiome transplant in autism spectrum disorder
+Research evidence has shown that there is a correlation between the microbial composition of the gut microbiota and function in the brain, a phenomenon called the “gut-brain axis.” The bi-directional correlation between the gut and brain has appeared in unexpected domains and diseases, including gastrointestinal infections that frequently coexist with autism spectrum disorder (ASD) (Ding et al., 2017; Vuong et al., 2017). The function of the gut-brain axis is attributed to bacterial metabolites. Most prominently, metabolites can enter the circulatory system and travel to the brain, or they can be directly transferred through the vagus nerve (Garcia et al., 2021).
+
+ASD is known to have a strong genetic linkage, including a reduced susceptibility to genetic mutations (Iossifov et al., 2015). Studies have also linked the functionality of specific genes involved in ASD to the microbiome composition of the same patients (Sgritta et al., 2019). In an effort to treat ASD symptoms, numerous studies have performed fecal microbiome transplants (FMT) in ASD patients and observed the effects of their recovery. Researchers often focus on the success of these trials, and poorly investigate patients that did not recover after FMT. The goal of this study is to determine several criteria for FMT recovery and investigate possible biological explanations for stagnant ASD recovery outcomes. We hypothesize that variations in FMT donor profiles as well as patient diet may explain variability in critical metabolites associated with ASD FMT recovery.
 
 ## Installation requirements:
 
 # Step 1. Install a conda environment
+
 An Ubuntu Linux environment for Windows 64 was used for the creation of this project.
 
 ```
@@ -11,9 +14,10 @@ wget "https://repo.anaconda.com/archive/Anaconda3-2021.11-Linux-x86_64.sh"
 bash Anaconda3-2021.11-Linux-x86_64.sh
 ```
 
-Close and re-open terminal
+Close and re-open your terminal.
 
-Test installation of conda
+Test your installation of conda.
+
 ```
 conda env list
 ```
@@ -42,8 +46,7 @@ rm -rf FASTQ/3826/artifact_3826.html
 
 Qiime2's import tool also requires that we relabel all of the files to a specific convention, which can be followed with the steps below. It is important to note that FASTQ reads for directories 3824, 3825, and 3826 use paired end sequence reads, while directory 3823 uses single end sequence reads. Qiime2 commands up until the demultiplexing step must be carried out separately.
 
-**Notes from Kang et al. 2017 [1]**
-"Sequence quality control and demultiplexing using QIIME’s split_libraries_fastq.py with default parameters was performed as described in Bokulich et al. [46] on a per-run basis. The sequences were combined across runs by merging the resulting files using the cat Unix command, and sequences were clustered into operational taxonomic units (OTUs) at sequence similarities of 100 and 97%."
+
 
 ```
 cd FASTQ/3823
